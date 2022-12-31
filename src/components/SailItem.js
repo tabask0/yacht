@@ -29,6 +29,7 @@ const SailItem = ({ nextStep, handleFormData, week, index, values }) => {
             Week {moment(week[1], "DD MMM YYYY").isoWeek()} from 1070€/person
           </h1>
           <FontAwesomeIcon
+            className="cursor-pointer"
             onClick={() =>
               iconActive === false ? setIconActive(true) : setIconActive(false)
             }

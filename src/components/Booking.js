@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import moment from "moment";
 import SailItem from "./SailItem";
+import Navbar from "./Navbar";
 
 const Booking = ({ nextStep, handleFormData, values }) => {
   var weeks = [];
@@ -18,6 +19,7 @@ const Booking = ({ nextStep, handleFormData, values }) => {
 
   return (
     <div>
+      <Navbar />
       <div className="flex-1 justify-center mt-24 text-center">
         <div className="row justify-content-center">
           <span className="p-4 border-b-4 border-albastru">Week</span>

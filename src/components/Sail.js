@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { Form, Card, Button } from "react-bootstrap";
 
 const Sail = ({ content, week, nextStep, handleFormData, values }) => {
-  const [selectedSail, setSelectedSail] = useState();
-
   const submitFirst = () => {
-    setSelectedSail(content.name);
-    handleFormData([week], `${week}`);
+    handleFormData("week", week);
+    handleFormData("crew", content.name);
     nextStep();
     console.log(values);
   };
@@ -26,9 +22,7 @@ const Sail = ({ content, week, nextStep, handleFormData, values }) => {
         <p>{}</p>
         <button
           onClick={() => submitFirst()}
-          className={`mt-4 border-2 rounded hover:text-albastru ease-in-out transition-all ${
-            selectedSail !== undefined ? "font-bold text-albastru" : ""
-          }`}
+          className="mt-4 border-2 rounded hover:text-albastru ease-in-out transition-all"
         >
           Select
         </button>
