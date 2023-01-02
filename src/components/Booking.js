@@ -5,11 +5,11 @@ import Navbar from "./Navbar";
 
 const Booking = ({ nextStep, handleFormData, values }) => {
   var weeks = [];
-  var startDate = moment(new Date(2022, 5)).isoWeekday(8);
+  var startDate = moment(new Date(2023, 5)).isoWeekday(8);
   if (startDate.date() == 8) {
     startDate = startDate.isoWeekday(-6);
   }
-  var today = moment(new Date(2022, 9)).startOf("week").format("YYYY-MM-DD");
+  var today = moment(new Date(2023, 9)).startOf("week").format("YYYY-MM-DD");
   while (startDate.isBefore(today)) {
     let startDateWeek = startDate.isoWeekday("Monday").format("DD MMM");
     let endDateWeek = startDate.isoWeekday("Sunday").format("DD MMM YYYY");

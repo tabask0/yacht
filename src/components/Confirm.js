@@ -80,7 +80,7 @@ const Confirm = ({ values, prevStep, nextStep, handleFormData }) => {
           />
           <label>Message</label>
           <textarea name="message" />
-          <input onClick={() => nextStep()} type="submit" value="Send" />
+          <input type="submit" value="Send" />
         </form>
       </StyledContactForm>
     </div>
