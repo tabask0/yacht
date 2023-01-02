@@ -1,16 +1,23 @@
 /* eslint-disable react/style-prop-object */
 import "./index.css";
 import { useState } from "react";
-import Navigation from "./components/Navbar";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Contact from "./components/Contact";
 import Booking from "./components/Booking";
 import Crew from "./components/Crew";
-import SailItem from "./components/SailItem";
 import Confirm from "./components/Confirm";
+import CheckoutForm from "./components/CheckoutForm";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+
+const stripePromise = loadStripe(
+  `${process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}`
+);
 
 function App() {
   const [step, setstep] = useState(1);
+  const options = {
+    clientSecret: `${process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY}`,
+  };
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -61,7 +68,20 @@ function App() {
     case 3:
       return (
         <div>
-          <Confirm values={formData} />
+          <Confirm
+            values={formData}
+            prevStep={prevStep}
+            nextStep={nextStep}
+            handleFormData={handleInputData}
+          />
+        </div>
+      );
+    case 4:
+      return (
+        <div>
+          <Elements stripe={stripePromise} options={options}>
+            <CheckoutForm />
+          </Elements>
         </div>
       );
     default:

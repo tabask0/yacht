@@ -22,9 +22,9 @@ const Booking = ({ nextStep, handleFormData, values }) => {
       <Navbar />
       <div className="flex-1 justify-center mt-24 text-center">
         <div className="row justify-content-center">
-          <span className="p-4 border-b-4 border-albastru">Week</span>
-          <span className="p-4 border-b-4 border-gri">Crew</span>
-          <span className="p-4 border-b-4 border-gri">Confirm</span>
+          <span className="p-4 border-b-8 border-albastru">Week</span>
+          <span className="p-4 border-b-8 border-gri">Crew</span>
+          <span className="p-4 border-b-8 border-gri">Confirm</span>
         </div>
       </div>
       <div className="text-center mt-24">

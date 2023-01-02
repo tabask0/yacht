@@ -5,7 +5,6 @@ const Sail = ({ content, week, nextStep, handleFormData, values }) => {
     handleFormData("week", week);
     handleFormData("crew", content.name);
     nextStep();
-    console.log(values);
   };
 
   return (

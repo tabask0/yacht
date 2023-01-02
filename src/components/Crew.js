@@ -9,12 +9,12 @@ const Crew = ({ week, values, nextStep, prevStep }) => {
         <div className="row justify-content-center">
           <span
             onClick={() => prevStep()}
-            className="p-4 border-b-4 border-gri cursor-pointer"
+            className="p-4 border-b-8 border-gri cursor-pointer"
           >
             Week
           </span>
-          <span className="p-4 border-b-4 border-albastru">Crew</span>
-          <span className="p-4 border-b-4 border-gri">Confirm</span>
+          <span className="p-4 border-b-8 border-albastru">Crew</span>
+          <span className="p-4 border-b-8 border-gri">Confirm</span>
         </div>
       </div>
       <div className="text-center mt-24">
@@ -22,8 +22,14 @@ const Crew = ({ week, values, nextStep, prevStep }) => {
           You are sailing in
           <b className="mr-2 ml-2"> Croatia 🇭🇷</b> on{" "}
           {`${values.week[0]} - ${values.week[1]}`} with{" "}
-          <p className="font-bold mr-2 ml-2">{values.crew}</p>
-        </div>
+          <p className="font-bold mr-2 ml-2">{values.crew}</p>{" "}
+        </div>{" "}
+        <button
+          className="border-2 border-albastru pl-4 pr-4 mt-6 rounded-lg text-albastru "
+          onClick={() => nextStep()}
+        >
+          Next
+        </button>
       </div>
     </div>
   );
