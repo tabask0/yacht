@@ -9,6 +9,7 @@ import CheckoutForm from "./components/CheckoutForm";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { Outlet, Link } from "react-router-dom";
+import ConfirmedScreen from "./components/ConfirmedScreen";
 
 const stripePromise = loadStripe(
   `${process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}`
@@ -82,11 +83,10 @@ const Home = () => {
     case 4:
       return (
         <div>
-          <Elements stripe={stripePromise} options={options}>
-            <CheckoutForm />
-          </Elements>
+          <ConfirmedScreen values={formData} />
         </div>
       );
+
     default:
       return <div></div>;
   }

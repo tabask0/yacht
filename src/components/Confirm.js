@@ -35,6 +35,7 @@ const Confirm = ({ values, prevStep, nextStep, handleFormData }) => {
           console.log(error.text);
         }
       );
+    nextStep();
   };
 
   return (
@@ -92,9 +93,10 @@ export default Confirm;
 const StyledContactForm = styled.div`
   display: flex;
   justify-content: center;
-  width: 400px;
+  width: 350px;
   margin: auto;
   margin-top: 150px;
+  margin-bottom: 80px;
   form {
     display: flex;
     align-items: flex-start;

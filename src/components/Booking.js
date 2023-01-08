@@ -5,7 +5,7 @@ import Navbar from "./Navbar";
 
 const Booking = ({ nextStep, handleFormData, values }) => {
   var weeks = [];
-  var startDate = moment(new Date(2023, 5)).isoWeekday(8);
+  var startDate = moment(new Date(2023, 4)).isoWeekday(8);
   if (startDate.date() == 8) {
     startDate = startDate.isoWeekday(-6);
   }
@@ -18,10 +18,10 @@ const Booking = ({ nextStep, handleFormData, values }) => {
   }
 
   return (
-    <div>
+    <div className="mb-20">
       <Navbar />
-      <div className="flex-1 justify-center mt-24 text-center">
-        <div className="row justify-content-center">
+      <div className="flex justify-center mt-24 text-center">
+        <div className="flex flex-row">
           <span className="p-4 border-b-8 border-albastru">Week</span>
           <span className="p-4 border-b-8 border-gri">Crew</span>
           <span className="p-4 border-b-8 border-gri">Confirm</span>

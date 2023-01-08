@@ -10,7 +10,7 @@ const SailItem = ({ nextStep, handleFormData, week, index, values }) => {
 
   return (
     <div key={index} className="flex flex-row justify-center ">
-      <div className="w-3/6 h-46 mx-auto flex flex-col shadow-xl p-4 m-0">
+      <div className="w-full mr-8 ml-8 h-46 mx-auto flex flex-col shadow-xl p-4 m-0 lg:w-3/6 lg:mr-0">
         <div className="ml-4">
           <span style={{ fontSize: 40, color: "#00b1ab" }}>&#x2022;</span>
           <span style={{ fontSize: 40, color: "#eec2a7" }}>&#x2022;</span>
@@ -36,7 +36,7 @@ const SailItem = ({ nextStep, handleFormData, week, index, values }) => {
             icon={iconActive === false ? faArrowRight : faArrowDown}
           />
         </div>
-        <div className="flex flex-row">
+        <div className="w-full flex flex-row">
           {iconActive === true &&
             sails.map((sail) => (
               <Sail

@@ -50,7 +50,7 @@ export default Contact;
 const StyledContactForm = styled.div`
   display: flex;
   justify-content: center;
-  width: 400px;
+  width: 350px;
   margin: auto;
   margin-top: 150px;
   form {

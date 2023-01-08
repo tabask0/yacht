@@ -5,7 +5,7 @@ const Crew = ({ week, values, nextStep, prevStep }) => {
   return (
     <div>
       <Navbar />
-      <div className="flex-1 justify-center mt-24 text-center">
+      <div className="flex justify-center mt-24 text-center">
         <div className="row justify-content-center">
           <span
             onClick={() => prevStep()}
