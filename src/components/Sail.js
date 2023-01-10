@@ -2,16 +2,18 @@ import React, { useState, useEffect } from "react";
 
 const Sail = ({ content, week, nextStep, handleFormData, values }) => {
   const submitFirst = () => {
-    handleFormData("week", week);
-    handleFormData("crew", content.name);
+    handleFormData("category", content.name);
     nextStep();
   };
 
   return (
-    <div className="w-full flex flex-col justify-center p-2">
-      <div className="flex flex-col">
+    <div
+      style={{ backgroundColor: "white" }}
+      className="w-full flex flex-col justify-center md:justify-start shadow-lg mx-4 p-16 rounded-lg"
+    >
+      <div className="flex flex-col bg-white">
         <h1
-          className="font-bold h-10 text-center"
+          className="font-bold h-10 text-center text-xl"
           style={{ color: content.color }}
         >
           {content.name}
@@ -23,9 +25,8 @@ const Sail = ({ content, week, nextStep, handleFormData, values }) => {
         </div>
         <p>{}</p>
         <button
-          style={{ fontFamily: "sofia" }}
           onClick={() => submitFirst()}
-          className="mt-2 p-1/2 border-2 rounded hover:text-albastru ease-in-out transition-all"
+          className="w-44 h-8 mx-auto rounded-xl mt-6 buttons"
         >
           Select
         </button>

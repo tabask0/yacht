@@ -14,3 +14,13 @@
    url("./assets/sofiapro-light.otf") format("truetype");
   font-weight: bold;
   }
+
+.buttons {
+  background-color: #0084FE;
+  color: white;
+  transition: 0.15s ease-in-out;
+}
+
+.buttons:hover {
+  background-color: #133363;
+}

@@ -43,12 +43,15 @@ const Confirm = ({ values, prevStep, nextStep, handleFormData }) => {
       <Navbar />
       <div className="flex-1 justify-center mt-24 text-center">
         <div className="row justify-content-center">
+          <span className="p-4 border-b-8 border-gri cursor-pointer">
+            Category
+          </span>
           <span className="p-4 border-b-8 border-gri">Week</span>
           <span
             onClick={() => prevStep()}
             className="p-4 border-b-8 border-gri cursor-pointer"
           >
-            Crew
+            Boat
           </span>
           <span className="p-4 border-b-8 border-albastru">Confirm</span>
         </div>

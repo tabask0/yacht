@@ -5,21 +5,14 @@ import Contact from "./components/Contact";
 import Booking from "./components/Booking";
 import Crew from "./components/Crew";
 import Confirm from "./components/Confirm";
-import CheckoutForm from "./components/CheckoutForm";
-import { Elements } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
-import { Outlet, Link } from "react-router-dom";
-import ConfirmedScreen from "./components/ConfirmedScreen";
 
-const stripePromise = loadStripe(
-  `${process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}`
-);
+import ConfirmedScreen from "./components/ConfirmedScreen";
+import SailType from "./components/SailType";
+import BoatSize from "./components/BoatSize";
+import BoatCabins from "./components/BoatCabins";
 
 const Home = () => {
   const [step, setstep] = useState(1);
-  const options = {
-    clientSecret: `${process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY}`,
-  };
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -27,7 +20,9 @@ const Home = () => {
     age: "",
     email: "",
     week: "",
-    crew: "",
+    category: "",
+    boat: null,
+    cabin: "",
   });
 
   const nextStep = () => {
@@ -48,20 +43,18 @@ const Home = () => {
   switch (step) {
     case 1:
       return (
-        <div>
-          <Link to="/GY/test">
-            <Booking
-              nextStep={nextStep}
-              handleFormData={handleInputData}
-              values={formData}
-            />
-          </Link>
+        <div style={{ backgroundColor: "#F3F6F5", minHeight: "100vh" }}>
+          <SailType
+            nextStep={nextStep}
+            handleFormData={handleInputData}
+            values={formData}
+          />
         </div>
       );
     case 2:
       return (
-        <div>
-          <Crew
+        <div style={{ backgroundColor: "#F3F6F5", minHeight: "100vh" }}>
+          <Booking
             nextStep={nextStep}
             prevStep={prevStep}
             handleFormData={handleInputData}
@@ -71,7 +64,40 @@ const Home = () => {
       );
     case 3:
       return (
-        <div>
+        <div style={{ backgroundColor: "#F3F6F5", minHeight: "100vh" }}>
+          <Crew
+            nextStep={nextStep}
+            prevStep={prevStep}
+            handleFormData={handleInputData}
+            values={formData}
+          />
+        </div>
+      );
+    case 4:
+      return (
+        <div style={{ backgroundColor: "#F3F6F5", minHeight: "100vh" }}>
+          <BoatSize
+            nextStep={nextStep}
+            prevStep={prevStep}
+            handleFormData={handleInputData}
+            values={formData}
+          />
+        </div>
+      );
+    case 5:
+      return (
+        <div style={{ backgroundColor: "#F3F6F5", minHeight: "100vh" }}>
+          <BoatCabins
+            nextStep={nextStep}
+            prevStep={prevStep}
+            handleFormData={handleInputData}
+            values={formData}
+          />
+        </div>
+      );
+    case 6:
+      return (
+        <div style={{ backgroundColor: "#F3F6F5", minHeight: "100vh" }}>
           <Confirm
             values={formData}
             prevStep={prevStep}
@@ -80,9 +106,9 @@ const Home = () => {
           />
         </div>
       );
-    case 4:
+    case 7:
       return (
-        <div>
+        <div style={{ backgroundColor: "#F3F6F5", minHeight: "100vh" }}>
           <ConfirmedScreen values={formData} />
         </div>
       );

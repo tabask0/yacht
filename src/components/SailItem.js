@@ -9,7 +9,13 @@ const SailItem = ({ nextStep, handleFormData, week, index, values }) => {
   const [iconActive, setIconActive] = useState(false);
 
   return (
-    <div key={index} className="flex flex-row justify-center ">
+    <div
+      key={index}
+      className="flex flex-row justify-center"
+      onClick={() =>
+        iconActive === false ? setIconActive(true) : setIconActive(false)
+      }
+    >
       <div className="w-full mr-8 ml-8 h-46 mx-auto flex flex-col shadow-xl p-4 m-0 lg:w-3/6 lg:mr-0">
         <div className="ml-4">
           <span style={{ fontSize: 40, color: "#00b1ab" }}>&#x2022;</span>
@@ -30,13 +36,10 @@ const SailItem = ({ nextStep, handleFormData, week, index, values }) => {
           </h1>
           <FontAwesomeIcon
             className="cursor-pointer"
-            onClick={() =>
-              iconActive === false ? setIconActive(true) : setIconActive(false)
-            }
             icon={iconActive === false ? faArrowRight : faArrowDown}
           />
         </div>
-        <div className="w-full flex flex-row">
+        <div className="w-full flex flex-row lg:mt-4">
           {iconActive === true &&
             sails.map((sail) => (
               <Sail
