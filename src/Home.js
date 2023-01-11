@@ -76,29 +76,7 @@ const Home = () => {
     case 4:
       return (
         <div style={{ backgroundColor: "#F3F6F5", minHeight: "100vh" }}>
-          <BoatSize
-            nextStep={nextStep}
-            prevStep={prevStep}
-            handleFormData={handleInputData}
-            values={formData}
-          />
-        </div>
-      );
-    case 5:
-      return (
-        <div style={{ backgroundColor: "#F3F6F5", minHeight: "100vh" }}>
-          <BoatCabins
-            nextStep={nextStep}
-            prevStep={prevStep}
-            handleFormData={handleInputData}
-            values={formData}
-          />
-        </div>
-      );
-    case 6:
-      return (
-        <div style={{ backgroundColor: "#F3F6F5", minHeight: "100vh" }}>
-          <Confirm
+          <ConfirmedScreen
             values={formData}
             prevStep={prevStep}
             nextStep={nextStep}
@@ -106,13 +84,6 @@ const Home = () => {
           />
         </div>
       );
-    case 7:
-      return (
-        <div style={{ backgroundColor: "#F3F6F5", minHeight: "100vh" }}>
-          <ConfirmedScreen values={formData} />
-        </div>
-      );
-
     default:
       return <div></div>;
   }

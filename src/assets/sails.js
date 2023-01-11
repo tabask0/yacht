@@ -66,3 +66,13 @@ export const boatSize = [
       "Set sail with like-minded adventurers in a cabin on a shared classic monohull yacht. Book with a mate to share a double cabin.",
   },
 ];
+
+export const qa = [
+  { id: 1, name: "Whats included?" },
+  { id: 2, name: "Where do you sleep?" },
+  { id: 3, name: "Are there extra costs?" },
+  { id: 4, name: "Who will my crew be?" },
+  { id: 5, name: "What yachts will I be sailing on??" },
+  { id: 6, name: "Refundable yacht deposit" },
+  { id: 7, name: "What airport do I fly into?" },
+];

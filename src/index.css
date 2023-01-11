@@ -24,3 +24,20 @@
 .buttons:hover {
   background-color: #133363;
 }
+
+.cabinsInput {
+  border: 1px solid #0084FE; 
+  color: #0084FE;
+  transition: 0.15s ease-in-out;
+}
+
+.cabinsInput:hover {
+  border: 1px solid transparent;
+  color: white;
+  background-color: #0084FE;
+}
+
+.summaryBox {
+  border: 1px solid #E0E4EA;
+  padding: 15px;
+}

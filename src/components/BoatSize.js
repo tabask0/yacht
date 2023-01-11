@@ -3,7 +3,13 @@ import Navbar from "./Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 
-const BoatSize = ({ prevStep, nextStep, handleFormData, boats }) => {
+const BoatSize = ({
+  prevStep,
+  nextStep,
+  handleFormData,
+  boats,
+  setSelectedBoatSize,
+}) => {
   return (
     <div
       style={{ backgroundColor: "white" }}
@@ -44,6 +50,7 @@ const BoatSize = ({ prevStep, nextStep, handleFormData, boats }) => {
           {boats.description}
         </p>
         <button
+          onClick={() => setSelectedBoatSize(boats.name)}
           style={{ fontFamily: "sofia" }}
           className="w-full h-10 mt-10 p-1/2 rounded buttons"
         >
