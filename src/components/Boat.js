@@ -2,17 +2,30 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
-const Boat = ({ boat, handleFormData, nextStep, values, setSelectedBoat }) => {
+const Boat = ({
+  boat,
+  handleFormData,
+  nextStep,
+  values,
+  setSelectedBoat,
+  setSelectedBoatName,
+  selectedBoatName,
+}) => {
+  const submitFirst = () => {
+    setSelectedBoat(true);
+    setSelectedBoatName(boat.name);
+  };
   return (
     <div
+      key={boat.id}
       style={{ backgroundColor: "white" }}
-      className="flex flex-row justify-center md:justify-start shadow-lg mx-4 p-4 rounded-lg mt-24 h-full"
+      className="flex flex-row justify-center md:justify-start shadow-lg mx-4 p-4 rounded-lg mt-8 h-full"
     >
-      <div className="flex flex-col bg-white mt-44">
+      <div className="flex flex-col bg-white mt-44 flex-wrap">
         <h1 style={{ color: boat.color }} className="font-bold h-10  text-xl">
           {boat.name}
         </h1>
-        <h1 style={{ color: "#838995" }}>From: $1,048/person</h1>
+        <h1 style={{ color: "#838995" }}>From: €1,048/person</h1>
         <div className="flex flex-col ">
           <div className="flex flex-row justify-between mt-8">
             <div className="text-sm font-medium">Yacht Type:</div>
@@ -38,7 +51,7 @@ const Boat = ({ boat, handleFormData, nextStep, values, setSelectedBoat }) => {
           </div>
         </div>
         <button
-          onClick={() => setSelectedBoat(true)}
+          onClick={() => submitFirst()}
           style={{ fontFamily: "sofia" }}
           className="w-full h-10 mt-10 p-1/2 rounded buttons"
         >

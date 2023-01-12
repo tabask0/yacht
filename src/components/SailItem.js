@@ -28,7 +28,7 @@ const SailItem = ({ nextStep, handleFormData, week, index, values }) => {
           <h1
             style={{ fontFamily: "sofia" }}
             className="mx-4 text-lg"
-          >{`${week[0]} - ${week[1]}`}</h1>
+          >{`€{week[0]} - €{week[1]}`}</h1>
         </div>
         <div className="flex flex-row  justify-between ml-4 mt-4">
           <h1 style={{ fontFamily: "sofia" }} className="text-gri">

@@ -8,15 +8,45 @@ import { faUsers, faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 
 const Crew = ({ week, values, nextStep, prevStep, handleFormData }) => {
   const [selectedBoat, setSelectedBoat] = useState(false);
+  const [selectedBoatName, setSelectedBoatName] = useState("");
   const [selectedBoatSize, setSelectedBoatSize] = useState(null);
   const [cabinSize, setCabinSize] = useState({
     boysCabin: 0,
     girlsCabin: 0,
     mixedCabin: 0,
+    basePrice: 1086,
+    total: null,
   });
+  const yachtSize = {
+    boysCabin: 5,
+    girlsCabin: 5,
+    skipper: 1,
+    basePrice: 1086,
+    total: 1086 * 11,
+  };
+
+  const submitFirst = () => {
+    handleFormData("fullYacht", selectedBoatSize === "Cabins" ? false : true);
+    handleFormData("boat", selectedBoatName);
+    handleFormData(
+      "cabin",
+      selectedBoatSize === "Cabins" ? cabinSize : yachtSize
+    );
+  };
+
+  const formatDate = (date) => {
+    const newDate = date && date.split(" ");
+    return `${newDate[0]} - ${newDate[1]}`;
+  };
+
+  const formatPrice = (price) => {
+    const str = JSON.stringify(price);
+    const first = str.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return first;
+  };
 
   return (
-    <div>
+    <div className="flex flex-col justify-center md:justify-start">
       <Navbar />
       <div className="flex flex-row justify-center mt-24 text-center">
         <div className="row justify-content-center">
@@ -34,19 +64,24 @@ const Crew = ({ week, values, nextStep, prevStep, handleFormData }) => {
         </div>
       </div>
       <div className="text-center mt-24">
-        <div className="flex flex-row justify-center m-2">
+        <div className="flex flex-row justify-center m-2 flex-wrap">
           You are sailing in
           <b className="mr-2 ml-2"> Croatia 🇭🇷</b> on{" "}
-          <p className="mr-2 ml-2 font-bold">{`${values.week[0]} - ${values.week[1]}`}</p>
-          with a <p className="font-bold mr-2 ml-2">{values.crew}</p>{" "}
+          <p className="mr-2 ml-2 font-bold flex flex-row">
+            {formatDate(values.week)}
+          </p>
+          with a <p className="font-bold mr-2 ml-2">{values.category}</p>{" "}
+          <p>package</p>
         </div>{" "}
       </div>
       {selectedBoat === false && (
-        <div className="w-full h-full flex flex-row lg:mt-4 justify-center">
-          {boats.map((boat) => (
+        <div className="w-full h-full flex flex-row lg:mt-4 justify-center flex-wrap mx-auto mb-12">
+          {boats.map((boat, index) => (
             <Boat
+              selectedBoatName={selectedBoatName}
+              setSelectedBoatName={setSelectedBoatName}
               setSelectedBoat={setSelectedBoat}
-              key={boat.id}
+              key={index}
               boat={boat}
               values={values}
               nextStep={nextStep}
@@ -57,17 +92,22 @@ const Crew = ({ week, values, nextStep, prevStep, handleFormData }) => {
         </div>
       )}
       {selectedBoat === true && selectedBoatSize === null && (
-        <div className="w-full h-full flex flex-row lg:mt-4 justify-center">
+        <div className="w-full h-full flex lg:mt-4 justify-center flex-wrap mb-10">
           {boatSize.map((boats) => (
-            <BoatSize boats={boats} setSelectedBoatSize={setSelectedBoatSize} />
+            <BoatSize
+              key={boats.id}
+              boats={boats}
+              setSelectedBoatSize={setSelectedBoatSize}
+              submitFirst={submitFirst}
+            />
           ))}
         </div>
       )}
       {selectedBoatSize === "Cabins" ? (
-        <div className="w-full h-full flex flex-row lg:mt-4 justify-center">
+        <div className="w-full lg:w-1/3 h-full flex flex-row lg:mt-4 mx-auto justify-center">
           <div
             style={{ backgroundColor: "white" }}
-            className="w-1/3 h-full flex flex-row justify-center md:justify-start shadow-lg mx-4 p-4 rounded-lg mt-24"
+            className="w-full h-full flex flex-row justify-center md:justify-start shadow-lg mx-4 p-4 rounded-lg mt-24 mb-12"
           >
             <div className="w-full flex flex-col bg-white p-2">
               <h1 className="font-bold h-10 text-3xl">Cabins</h1>
@@ -86,7 +126,7 @@ const Crew = ({ week, values, nextStep, prevStep, handleFormData }) => {
                   <div>
                     <h1 className="font-semibold">2 Boy cabin</h1>
                     <p style={{ color: "#2E90FF" }}>You and friend</p>
-                    <p style={{ color: "#333333" }}>$1,086/person</p>
+                    <p style={{ color: "#333333" }}>€1,086/person</p>
                   </div>
                 </div>
                 <div className="flex flex-row justify-between">
@@ -94,7 +134,16 @@ const Crew = ({ week, values, nextStep, prevStep, handleFormData }) => {
                     onClick={() =>
                       setCabinSize({
                         ...cabinSize,
-                        boysCabin: cabinSize.boysCabin - 1,
+                        boysCabin:
+                          cabinSize.boysCabin === 0
+                            ? 0
+                            : cabinSize.boysCabin - 1,
+                        total:
+                          cabinSize.total === null
+                            ? 0
+                            : cabinSize.total > 0
+                            ? cabinSize.total - cabinSize.basePrice
+                            : 0,
                       })
                     }
                     className="mr-3  p-1 rounded-lg cursor-pointer cabinsInput"
@@ -106,6 +155,10 @@ const Crew = ({ week, values, nextStep, prevStep, handleFormData }) => {
                       setCabinSize({
                         ...cabinSize,
                         boysCabin: cabinSize.boysCabin + 1,
+                        total:
+                          cabinSize.total === null
+                            ? cabinSize.basePrice
+                            : cabinSize.total + cabinSize.basePrice,
                       })
                     }
                     className="ml-2  p-1 rounded-lg cursor-pointer cabinsInput"
@@ -120,9 +173,9 @@ const Crew = ({ week, values, nextStep, prevStep, handleFormData }) => {
                     icon={faUsers}
                   />
                   <div>
-                    <h1 className="font-semibold">2 Boy cabin</h1>
+                    <h1 className="font-semibold">2 Mixed cabin</h1>
                     <p style={{ color: "#2E90FF" }}>You and friend</p>
-                    <p style={{ color: "#333333" }}>$1,086/person</p>
+                    <p style={{ color: "#333333" }}>€1,086/person</p>
                   </div>
                 </div>
                 <div className="flex flex-row justify-between">
@@ -130,7 +183,16 @@ const Crew = ({ week, values, nextStep, prevStep, handleFormData }) => {
                     onClick={() =>
                       setCabinSize({
                         ...cabinSize,
-                        boysCabin: cabinSize.mixedCabin - 1,
+                        mixedCabin:
+                          cabinSize.mixedCabin === 0
+                            ? 0
+                            : cabinSize.mixedCabin - 1,
+                        total:
+                          cabinSize.total === null
+                            ? 0
+                            : cabinSize.total > 0
+                            ? cabinSize.total - cabinSize.basePrice
+                            : 0,
                       })
                     }
                     className="mr-3  p-1 rounded-lg cursor-pointer cabinsInput"
@@ -141,7 +203,11 @@ const Crew = ({ week, values, nextStep, prevStep, handleFormData }) => {
                     onClick={() =>
                       setCabinSize({
                         ...cabinSize,
-                        boysCabin: cabinSize.mixedCabin + 1,
+                        mixedCabin: cabinSize.mixedCabin + 1,
+                        total:
+                          cabinSize.total === null
+                            ? cabinSize.basePrice
+                            : cabinSize.total + cabinSize.basePrice,
                       })
                     }
                     className="ml-2  p-1 rounded-lg cursor-pointer cabinsInput"
@@ -156,9 +222,9 @@ const Crew = ({ week, values, nextStep, prevStep, handleFormData }) => {
                     icon={faUsers}
                   />
                   <div>
-                    <h1 className="font-semibold">2 Boy cabin</h1>
+                    <h1 className="font-semibold">2 Girl cabin</h1>
                     <p style={{ color: "#2E90FF" }}>You and friend</p>
-                    <p style={{ color: "#333333" }}>$1,086/person</p>
+                    <p style={{ color: "#333333" }}>€1,086/person</p>
                   </div>
                 </div>
                 <div className="flex flex-row justify-between">
@@ -166,7 +232,16 @@ const Crew = ({ week, values, nextStep, prevStep, handleFormData }) => {
                     onClick={() =>
                       setCabinSize({
                         ...cabinSize,
-                        boysCabin: cabinSize.girlsCabin - 1,
+                        girlsCabin:
+                          cabinSize.girlsCabin === 0
+                            ? 0
+                            : cabinSize.girlsCabin - 1,
+                        total:
+                          cabinSize.total === null
+                            ? 0
+                            : cabinSize.total > 0
+                            ? cabinSize.total - cabinSize.basePrice
+                            : 0,
                       })
                     }
                     className="mr-3  p-1 rounded-lg cursor-pointer cabinsInput"
@@ -177,7 +252,11 @@ const Crew = ({ week, values, nextStep, prevStep, handleFormData }) => {
                     onClick={() =>
                       setCabinSize({
                         ...cabinSize,
-                        boysCabin: cabinSize.girlsCabin + 1,
+                        girlsCabin: cabinSize.girlsCabin + 1,
+                        total:
+                          cabinSize.total === null
+                            ? cabinSize.basePrice
+                            : cabinSize.total + cabinSize.basePrice,
                       })
                     }
                     className="ml-2  p-1 rounded-lg cursor-pointer cabinsInput"
@@ -194,11 +273,20 @@ const Crew = ({ week, values, nextStep, prevStep, handleFormData }) => {
                   />
                   <div>
                     <h1 className="font-bold text-xl">Total:</h1>
+                    <h1 className="font-bold text-xl">
+                      €
+                      {cabinSize.total !== null
+                        ? formatPrice(cabinSize.total)
+                        : "0"}
+                    </h1>
                   </div>
                 </div>
               </div>
               <button
-                onClick={() => nextStep()}
+                onClick={() => {
+                  submitFirst();
+                  nextStep();
+                }}
                 style={{ fontFamily: "sofia" }}
                 className="w-full h-10 mt-10 p-1/2 rounded buttons"
               >

@@ -9,11 +9,12 @@ const BoatSize = ({
   handleFormData,
   boats,
   setSelectedBoatSize,
+  submitFirst,
 }) => {
   return (
     <div
       style={{ backgroundColor: "white" }}
-      className="w-80 h-full flex flex-row justify-center md:justify-start shadow-lg mx-4 p-4 rounded-lg mt-24 h-full"
+      className="w-80 flex flex-row justify-center md:justify-start shadow-lg mx-4 p-4 rounded-lg mt-10 h-full"
     >
       <div className="w-full  flex flex-col bg-white mt-44">
         <h1 className="font-bold h-10 text-2xl">{boats.name}</h1>
@@ -50,7 +51,10 @@ const BoatSize = ({
           {boats.description}
         </p>
         <button
-          onClick={() => setSelectedBoatSize(boats.name)}
+          onClick={() => {
+            setSelectedBoatSize(boats.name);
+            submitFirst();
+          }}
           style={{ fontFamily: "sofia" }}
           className="w-full h-10 mt-10 p-1/2 rounded buttons"
         >

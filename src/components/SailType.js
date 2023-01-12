@@ -1,11 +1,11 @@
 import React from "react";
-import { sails } from "../assets/sails";
+import { sailType } from "../assets/sails";
 import Sail from "./Sail";
 import Navbar from "./Navbar";
 
 const SailType = ({ nextStep, prevStep, handleFormData, values }) => {
   return (
-    <div className="flex flex-col justify-center md:justify-start">
+    <div className="justify-center md:justify-start">
       <Navbar />
       <div className="flex flex-row justify-center mt-24 text-center">
         <div className="flex flex-row">
@@ -15,8 +15,8 @@ const SailType = ({ nextStep, prevStep, handleFormData, values }) => {
           <span className="p-4 border-b-8 border-gri">Confirm</span>
         </div>
       </div>
-      <div className="flex flex-row lg:mt-32  mx-auto">
-        {sails.map((sail) => (
+      <div className="flex flex-row lg:mt-32  mx-auto flex-wrap">
+        {sailType.map((sail) => (
           <Sail
             handleFormData={handleFormData}
             key={sail.id}

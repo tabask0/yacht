@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from "react";
 
 const Sail = ({ content, week, nextStep, handleFormData, values }) => {
-  const submitFirst = () => {
+  const submitFirst = (e) => {
     handleFormData("category", content.name);
+    handleFormData(
+      "sailType",
+      content.name === "Crazy Sails" ? "Crazy Sails" : "all"
+    );
     nextStep();
   };
 
   return (
     <div
       style={{ backgroundColor: "white" }}
-      className="w-full flex flex-col justify-center md:justify-start shadow-lg mx-4 p-16 rounded-lg"
+      className=" flex flex-row justify-center md:justify-start shadow-lg mx-auto mt-10 p-16 rounded-lg sm:flex-wrap"
     >
       <div className="flex flex-col bg-white">
         <h1

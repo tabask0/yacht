@@ -21,8 +21,10 @@ const Home = () => {
     email: "",
     week: "",
     category: "",
-    boat: null,
-    cabin: "",
+    sailType: "",
+    boat: "",
+    cabin: null,
+    fullYacht: null,
   });
 
   const nextStep = () => {
