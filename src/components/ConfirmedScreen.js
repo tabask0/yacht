@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Navbar from "./Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -18,6 +18,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import emailjs from "@emailjs/browser";
 import styled from "styled-components";
+import da from "../assets/da.jpeg";
 
 const style = {
   position: "absolute",
@@ -43,6 +44,21 @@ const ConfirmedScreen = ({ values, prevStep, handleFormData }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [checked, setChecked] = useState(false);
+
+  const accord = () => {
+    setChecked(true);
+  };
+
+  const checkHandler = () => {
+    setChecked(!checked);
+    accord();
+  };
+
+  useEffect(() => {
+    console.log(checked);
+    checked === true && handleFormData("gdpr", checked);
+  }, [checked]);
 
   const formatPrice = (price) => {
     const str = JSON.stringify(price);
@@ -62,11 +78,6 @@ const ConfirmedScreen = ({ values, prevStep, handleFormData }) => {
 
   const sendEmail = (e) => {
     e.preventDefault();
-
-    handleFormData("firstName", fname);
-    handleFormData("lastName", lname);
-    handleFormData("age", age);
-    handleFormData("email", email);
 
     console.log(values);
 
@@ -88,8 +99,15 @@ const ConfirmedScreen = ({ values, prevStep, handleFormData }) => {
       );
   };
 
+  useEffect(() => {
+    handleFormData("firstName", fname);
+    handleFormData("lastName", lname);
+    handleFormData("age", age);
+    handleFormData("email", email);
+  }, [fname, lname, age, email]);
+
   return (
-    <div style={{ minHeight: "145vh" }}>
+    <div style={{ minHeight: "160vh" }}>
       <Navbar />
       <div className="flex flex-row justify-center mt-24 text-center">
         <div className="row justify-content-center">
@@ -113,9 +131,10 @@ const ConfirmedScreen = ({ values, prevStep, handleFormData }) => {
             style={{ backgroundColor: "white" }}
             className="w-full lg:w-2/3 h-full flex flex-row md:justify-start shadow-lg mx-4 p-4 rounded-lg mt-24"
           >
-            <div className="w-full  flex flex-col bg-white mt-44">
+            <div className="w-full  flex flex-col bg-white">
+              <img className="w-full" src={da} alt="da" />
               <div className="flex flex-row justify-between mb-2 font-semibold">
-                <h1 className="mt-44">{values.boat}</h1>
+                <h1 className="mt-6 text-2xl">{values.boat}</h1>
               </div>
               <div className="flex flex-col mb-2">
                 <h1 className="mt-2" style={{ color: "#838995" }}>
@@ -123,9 +142,16 @@ const ConfirmedScreen = ({ values, prevStep, handleFormData }) => {
                   {values.cabin !== null
                     ? formatPrice(values.cabin.basePrice)
                     : ""}
+                  /person
                 </h1>
                 <h1 className="mt-2" style={{ color: "#B2B7C2" }}>
-                  Up to 2 guests
+                  Up to{" "}
+                  {values.fullYacht === false
+                    ? values.cabin.boysCabin +
+                      values.cabin.mixedCabin +
+                      values.cabin.girlsCabin
+                    : "2"}{" "}
+                  guests
                 </h1>
                 <h1 className="mt-2 text-md" style={{ color: "#838995" }}>
                   Two-person cabin on a Classic Monohull yacht for 6 days,
@@ -606,10 +632,32 @@ const ConfirmedScreen = ({ values, prevStep, handleFormData }) => {
                 <div className="flex flex-row justify-between font-semibold text-sm mt-2">
                   <h1 className="font-semibold text-sm">Split with friends</h1>
                   <FontAwesomeIcon
-                    className=""
                     style={{ color: "#45DB5D" }}
                     icon={faCheck}
                   />
+                </div>
+                <hr style={{ color: "#E0E4EA" }} className="mt-4 w-full" />
+              </div>
+              <div className="flex flex-col mb-4 mt-2">
+                <h1 className="font-normal text-sm">
+                  By checking this box you give us the consent to use the
+                  personal data you provided to us to make the booking possible.
+                  We will not use it in any other way than this.
+                </h1>
+                <div className="flex mt-4">
+                  <input
+                    id="default-checkbox"
+                    type="checkbox"
+                    checked={checked}
+                    onChange={checkHandler}
+                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                  />
+                  <label
+                    htmlFor="default-checkbox"
+                    className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  >
+                    I consent to data privacy
+                  </label>
                 </div>
               </div>
               <button

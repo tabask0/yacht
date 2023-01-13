@@ -25,6 +25,7 @@ const Home = () => {
     boat: "",
     cabin: null,
     fullYacht: null,
+    gdpr: null,
   });
 
   const nextStep = () => {
