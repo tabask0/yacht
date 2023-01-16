@@ -1,15 +1,10 @@
 import React from "react";
 import "./index.css";
 import { useState } from "react";
-import Contact from "./components/Contact";
 import Booking from "./components/Booking";
 import Crew from "./components/Crew";
-import Confirm from "./components/Confirm";
-
 import ConfirmedScreen from "./components/ConfirmedScreen";
 import SailType from "./components/SailType";
-import BoatSize from "./components/BoatSize";
-import BoatCabins from "./components/BoatCabins";
 
 const Home = () => {
   const [step, setstep] = useState(1);
@@ -19,7 +14,7 @@ const Home = () => {
     lastName: "",
     age: "",
     email: "",
-    week: "",
+    week: {},
     category: "",
     sailType: "",
     boat: "",

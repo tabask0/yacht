@@ -107,10 +107,13 @@ const ConfirmedScreen = ({ values, prevStep, handleFormData }) => {
   }, [fname, lname, age, email]);
 
   return (
-    <div style={{ minHeight: "160vh" }}>
+    <div
+      className="flex flex-col justify-center md:justify-start"
+      style={{ minHeight: "160vh" }}
+    >
       <Navbar />
-      <div className="flex flex-row justify-center mt-24 text-center">
-        <div className="row justify-content-center">
+      <div className="flex flex-col justify-center mt-24 text-center">
+        <div className="flex flex-row justify-center">
           <span className="p-4 border-b-8 border-gri cursor-pointer">
             Category
           </span>
@@ -123,6 +126,12 @@ const ConfirmedScreen = ({ values, prevStep, handleFormData }) => {
           </span>
           <span className="p-4 border-b-8 border-albastru">Confirm</span>
         </div>
+        <button
+          onClick={() => prevStep()}
+          className="w-16 mx-auto mt-10 text-alb rounded bg-albastru"
+        >
+          Back
+        </button>
       </div>
       <div className="w-full flex flex-col justify-center mx-auto items-center mt-20 mb-20">
         <h1 className="text-3xl font-bold">Booking summary</h1>
@@ -139,18 +148,16 @@ const ConfirmedScreen = ({ values, prevStep, handleFormData }) => {
               <div className="flex flex-col mb-2">
                 <h1 className="mt-2" style={{ color: "#838995" }}>
                   From:€
-                  {values.cabin !== null
-                    ? formatPrice(values.cabin.basePrice)
-                    : ""}
+                  {values.cabin !== null ? formatPrice(values.week.person) : ""}
                   /person
                 </h1>
                 <h1 className="mt-2" style={{ color: "#B2B7C2" }}>
                   Up to{" "}
                   {values.fullYacht === false
-                    ? values.cabin.boysCabin +
-                      values.cabin.mixedCabin +
-                      values.cabin.girlsCabin
-                    : "2"}{" "}
+                    ? values.cabin.boysCabin * 2 +
+                      values.cabin.mixedCabin * 2 +
+                      values.cabin.girlsCabin * 2
+                    : "10"}{" "}
                   guests
                 </h1>
                 <h1 className="mt-2 text-md" style={{ color: "#838995" }}>
@@ -538,22 +545,27 @@ const ConfirmedScreen = ({ values, prevStep, handleFormData }) => {
               <div className="flex flex-col justify-between mb-2 font-semibold">
                 <h1>Croatia - Original Route</h1>
                 <h1 style={{ color: "#B8BDC7" }} className="text-sm mt-2">
-                  {values.week ? formatDate(values.week) : ""}
+                  {values.week
+                    ? formatDate(values.week.start + " " + values.week.end)
+                    : ""}
                 </h1>
                 <hr style={{ color: "#E0E4EA" }} className="mt-4 w-full" />
               </div>
               <div className="flex flex-col justify-between mb-2">
                 <h1 className="font-semibold text-xl mt-4">
-                  €
-                  {values.cabin !== null
-                    ? formatPrice(values.cabin.basePrice)
-                    : ""}
+                  €{values.cabin !== null ? formatPrice(values.week.full) : ""}
                 </h1>
                 <h1
                   style={{ color: "#B8BDC7" }}
                   className="font-semibold text-sm mt-2"
                 >
-                  Based on {values.fullYacht === true ? "10" : "2"} guests
+                  Based on{" "}
+                  {values.fullYacht === true
+                    ? "10"
+                    : values.cabin.boysCabin * 2 +
+                      values.cabin.mixedCabin * 2 +
+                      values.cabin.girlsCabin * 2}{" "}
+                  guests
                 </h1>
                 <hr style={{ color: "#E0E4EA" }} className="mt-4 w-full" />
               </div>
@@ -562,7 +574,7 @@ const ConfirmedScreen = ({ values, prevStep, handleFormData }) => {
                 <div className="flex flex-row justify-between font-semibold text-sm mt-2">
                   <h1 className="font-semibold text-sm">Cabin rental</h1>
                   <h1 className="font-semibold text-sm">
-                    {values.cabin ? formatPrice(values.cabin.total) : ""}
+                    {values.cabin ? formatPrice(values.week.full) : ""}
                   </h1>
                 </div>
                 <div className="flex flex-row justify-between mt-2">
@@ -577,8 +589,7 @@ const ConfirmedScreen = ({ values, prevStep, handleFormData }) => {
               <div className="flex flex-row justify-between mb-2">
                 <h1 className="font-semibold text-xl mt-4">Total</h1>
                 <h1 className="font-semibold text-xl mt-4">
-                  €
-                  {values.cabin !== null ? formatPrice(values.cabin.total) : ""}
+                  €{values.cabin !== null ? formatPrice(values.week.full) : ""}
                 </h1>
               </div>
               {values.fullYacht === true && (
@@ -706,7 +717,22 @@ const ConfirmedScreen = ({ values, prevStep, handleFormData }) => {
               />
               <label>Message</label>
               <textarea name="message" />
-              <input name="values" defaultValue={JSON.stringify(values)} />
+              <input
+                style={{ display: "none" }}
+                name="values.week.start"
+                defaultValue={JSON.stringify(values.week.start)}
+              />
+              <input
+                style={{ display: "none" }}
+                name="values.week.end"
+                defaultValue={JSON.stringify(values.week.end)}
+              />
+              <input
+                style={{ display: "none" }}
+                name="values.cabin.total"
+                defaultValue={JSON.stringify(values.cabin.total)}
+              />
+
               <input type="submit" value="Send" />
             </form>
           </StyledContactForm>

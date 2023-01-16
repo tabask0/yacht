@@ -9,6 +9,7 @@ module.exports = {
       albastru: "#0084fe",
       orange: "#eec1a6",
       mov: "#b790b0",
+      alb: "rgb(255 255 255)",
     },
     fontFamily: {
       poppins: ["Poppins"],

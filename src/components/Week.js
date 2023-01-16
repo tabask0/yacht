@@ -7,8 +7,27 @@ const Week = ({ nextStep, prevStep, handleFormData, values, week, index }) => {
   const [iconActive, setIconActive] = useState(false);
 
   const submitFirst = () => {
-    handleFormData("week", week.start + " " + week.end);
+    handleFormData("week", {
+      ...week,
+      start: week.start,
+      end: week.end,
+      person: week.person,
+      full: week.baseValue,
+      skipper: week.skipper,
+    });
     nextStep();
+  };
+
+  const formatDate = (date) => {
+    const newDate = date.split(".");
+    const formattedDate = new Date(
+      newDate[2] ? newDate[2] : "",
+      newDate[1],
+      newDate[0]
+    );
+    console.log(formattedDate);
+
+    return moment(formattedDate).format("DD MMM");
   };
 
   return (
@@ -38,11 +57,11 @@ const Week = ({ nextStep, prevStep, handleFormData, values, week, index }) => {
           <h1
             style={{ fontFamily: "sofia" }}
             className="mx-4 text-lg"
-          >{`${week.start} - ${week.end}`}</h1>
+          >{`${formatDate(week.start)} - ${formatDate(week.end)} 2023`}</h1>
         </div>
         <div className="flex flex-row  justify-between ml-4 mt-4">
           <h1 style={{ fontFamily: "sofia" }} className="text-gri">
-            Week {moment(week.start, "DD MMM YYYY").isoWeek()} from{" "}
+            Week {moment(formatDate(week.start), "DD MMM YYYY").isoWeek()} from{" "}
             {week.person}€/person
           </h1>
           <FontAwesomeIcon

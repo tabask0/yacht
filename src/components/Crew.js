@@ -14,15 +14,20 @@ const Crew = ({ week, values, nextStep, prevStep, handleFormData }) => {
     boysCabin: 0,
     girlsCabin: 0,
     mixedCabin: 0,
-    basePrice: 1086,
+    basePrice: values.week.person * 2,
     total: null,
   });
   const yachtSize = {
     boysCabin: 5,
     girlsCabin: 5,
     skipper: 1,
-    basePrice: 1086,
-    total: 1086 * 11,
+    basePrice: values.week.person,
+    total: values.week.full,
+  };
+
+  const formatPrice = (price) => {
+    const str = JSON.stringify(price);
+    return str.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
 
   const submitFirst = () => {
@@ -39,17 +44,11 @@ const Crew = ({ week, values, nextStep, prevStep, handleFormData }) => {
     return `${newDate[0]} - ${newDate[1]}`;
   };
 
-  const formatPrice = (price) => {
-    const str = JSON.stringify(price);
-    const first = str.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    return first;
-  };
-
   return (
     <div className="flex flex-col justify-center md:justify-start">
       <Navbar />
-      <div className="flex flex-row justify-center mt-24 text-center">
-        <div className="row justify-content-center">
+      <div className="flex flex-col justify-center mt-24 text-center">
+        <div className="flex flex-row justify-center">
           <span className="p-4 border-b-8 border-gri cursor-pointer">
             Category
           </span>
@@ -62,13 +61,19 @@ const Crew = ({ week, values, nextStep, prevStep, handleFormData }) => {
           <span className="p-4 border-b-8 border-albastru">Boat</span>
           <span className="p-4 border-b-8 border-gri">Confirm</span>
         </div>
+        <button
+          onClick={() => prevStep()}
+          className="w-16 mx-auto mt-10 text-alb rounded bg-albastru"
+        >
+          Back
+        </button>
       </div>
       <div className="text-center mt-24">
         <div className="flex flex-row justify-center m-2 flex-wrap">
           You are sailing in
           <b className="mr-2 ml-2"> Croatia 🇭🇷</b> on{" "}
           <p className="mr-2 ml-2 font-bold flex flex-row">
-            {formatDate(values.week)}
+            {formatDate(values.week.start + " " + values.week.end)}
           </p>
           with a <p className="font-bold mr-2 ml-2">{values.category}</p>{" "}
           <p>package</p>
@@ -95,6 +100,7 @@ const Crew = ({ week, values, nextStep, prevStep, handleFormData }) => {
         <div className="w-full h-full flex lg:mt-4 justify-center flex-wrap mb-10">
           {boatSize.map((boats) => (
             <BoatSize
+              values={values}
               key={boats.id}
               boats={boats}
               setSelectedBoatSize={setSelectedBoatSize}
@@ -126,7 +132,9 @@ const Crew = ({ week, values, nextStep, prevStep, handleFormData }) => {
                   <div>
                     <h1 className="font-semibold">2 Boy cabin</h1>
                     <p style={{ color: "#2E90FF" }}>You and friend</p>
-                    <p style={{ color: "#333333" }}>€1,086/person</p>
+                    <p style={{ color: "#333333" }}>
+                      {formatPrice(values.week.person)}€/person
+                    </p>
                   </div>
                 </div>
                 <div className="flex flex-row justify-between">
@@ -175,7 +183,9 @@ const Crew = ({ week, values, nextStep, prevStep, handleFormData }) => {
                   <div>
                     <h1 className="font-semibold">2 Mixed cabin</h1>
                     <p style={{ color: "#2E90FF" }}>You and friend</p>
-                    <p style={{ color: "#333333" }}>€1,086/person</p>
+                    <p style={{ color: "#333333" }}>
+                      {formatPrice(values.week.person)}€/person
+                    </p>
                   </div>
                 </div>
                 <div className="flex flex-row justify-between">
@@ -224,7 +234,9 @@ const Crew = ({ week, values, nextStep, prevStep, handleFormData }) => {
                   <div>
                     <h1 className="font-semibold">2 Girl cabin</h1>
                     <p style={{ color: "#2E90FF" }}>You and friend</p>
-                    <p style={{ color: "#333333" }}>€1,086/person</p>
+                    <p style={{ color: "#333333" }}>
+                      {formatPrice(values.week.person)}€/person
+                    </p>
                   </div>
                 </div>
                 <div className="flex flex-row justify-between">

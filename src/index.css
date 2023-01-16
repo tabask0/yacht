@@ -6,7 +6,9 @@ html {
   background-color: #F3F6F5;
 }
 
-
+body {
+  overflow-y: overlay;
+}
 
 @font-face {
   font-family: "sofia";

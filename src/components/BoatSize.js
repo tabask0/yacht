@@ -10,7 +10,12 @@ const BoatSize = ({
   boats,
   setSelectedBoatSize,
   submitFirst,
+  values,
 }) => {
+  const formatPrice = (price) => {
+    const str = JSON.stringify(price);
+    return str.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
   return (
     <div
       style={{ backgroundColor: "white" }}
@@ -19,7 +24,11 @@ const BoatSize = ({
       <div className="w-full  flex flex-col bg-white mt-44">
         <h1 className="font-bold h-10 text-2xl">{boats.name}</h1>
         <h1 className="font-bold mb-2" style={{ color: "#838995" }}>
-          From: {boats.price}
+          From:{" "}
+          {boats.name === "Full Yacht"
+            ? formatPrice(values.week.full)
+            : formatPrice(values.week.person)}
+          €/person
         </h1>
         <p className="mb-4" style={{ color: "#838995" }}>
           {boats.capacity}
