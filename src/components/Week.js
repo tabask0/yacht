@@ -25,9 +25,13 @@ const Week = ({ nextStep, prevStep, handleFormData, values, week, index }) => {
       newDate[1],
       newDate[0]
     );
-    console.log(formattedDate);
 
     return moment(formattedDate).format("DD MMM");
+  };
+
+  const formatPrice = (price) => {
+    const str = JSON.stringify(price);
+    return str.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
 
   return (
@@ -62,7 +66,7 @@ const Week = ({ nextStep, prevStep, handleFormData, values, week, index }) => {
         <div className="flex flex-row  justify-between ml-4 mt-4">
           <h1 style={{ fontFamily: "sofia" }} className="text-gri">
             Week {moment(formatDate(week.start), "DD MMM YYYY").isoWeek()} from{" "}
-            {week.person}€/person
+            {formatPrice(week.person)}€/person
           </h1>
           <FontAwesomeIcon
             className="cursor-pointer"

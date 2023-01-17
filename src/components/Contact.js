@@ -1,10 +1,13 @@
 import React, { useRef } from "react";
 import emailjs from "@emailjs/browser";
 import styled from "styled-components";
-import Navbar from "./Navbar";
+import { Link } from "react-router-dom";
 
 const Contact = () => {
   const form = useRef();
+  const refreshPage = () => {
+    window.location.reload();
+  };
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -12,7 +15,7 @@ const Contact = () => {
     emailjs
       .sendForm(
         "service_vz1mhb8",
-        "template_8aom1se",
+        "template_rizz1yw",
         form.current,
         "YuDSusaOKA9KG3ye3"
       )
@@ -29,7 +32,16 @@ const Contact = () => {
 
   return (
     <div>
-      <Navbar />
+      <div className="w-full h-18 justify-between shadow-lg">
+        <div className="flex flex-row justify-between p-6 mr-auto">
+          <Link to="/GY/test">
+            <h1 className="text-md">GLOBAL YACHTING</h1>
+          </Link>
+          <Link to="/GY/test/contact">
+            <h3 className="text-md hover:cursor-pointer">Contact us</h3>
+          </Link>
+        </div>
+      </div>
       <StyledContactForm>
         <form ref={form} onSubmit={sendEmail}>
           <label>Name</label>

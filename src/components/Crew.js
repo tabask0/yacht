@@ -92,6 +92,7 @@ const Crew = ({ week, values, nextStep, prevStep, handleFormData }) => {
               nextStep={nextStep}
               prevStep={prevStep}
               handleFormData={handleFormData}
+              formatPrice={formatPrice}
             />
           ))}
         </div>
@@ -150,7 +151,7 @@ const Crew = ({ week, values, nextStep, prevStep, handleFormData }) => {
                           cabinSize.total === null
                             ? 0
                             : cabinSize.total > 0
-                            ? cabinSize.total - cabinSize.basePrice
+                            ? cabinSize.total - values.week.person
                             : 0,
                       })
                     }
@@ -165,8 +166,8 @@ const Crew = ({ week, values, nextStep, prevStep, handleFormData }) => {
                         boysCabin: cabinSize.boysCabin + 1,
                         total:
                           cabinSize.total === null
-                            ? cabinSize.basePrice
-                            : cabinSize.total + cabinSize.basePrice,
+                            ? values.week.person
+                            : cabinSize.total + values.week.person,
                       })
                     }
                     className="ml-2  p-1 rounded-lg cursor-pointer cabinsInput"
@@ -201,7 +202,7 @@ const Crew = ({ week, values, nextStep, prevStep, handleFormData }) => {
                           cabinSize.total === null
                             ? 0
                             : cabinSize.total > 0
-                            ? cabinSize.total - cabinSize.basePrice
+                            ? cabinSize.total - values.week.person
                             : 0,
                       })
                     }
@@ -216,8 +217,8 @@ const Crew = ({ week, values, nextStep, prevStep, handleFormData }) => {
                         mixedCabin: cabinSize.mixedCabin + 1,
                         total:
                           cabinSize.total === null
-                            ? cabinSize.basePrice
-                            : cabinSize.total + cabinSize.basePrice,
+                            ? values.week.person
+                            : cabinSize.total + values.week.person,
                       })
                     }
                     className="ml-2  p-1 rounded-lg cursor-pointer cabinsInput"
@@ -252,7 +253,7 @@ const Crew = ({ week, values, nextStep, prevStep, handleFormData }) => {
                           cabinSize.total === null
                             ? 0
                             : cabinSize.total > 0
-                            ? cabinSize.total - cabinSize.basePrice
+                            ? cabinSize.total - values.week.person
                             : 0,
                       })
                     }
@@ -267,8 +268,8 @@ const Crew = ({ week, values, nextStep, prevStep, handleFormData }) => {
                         girlsCabin: cabinSize.girlsCabin + 1,
                         total:
                           cabinSize.total === null
-                            ? cabinSize.basePrice
-                            : cabinSize.total + cabinSize.basePrice,
+                            ? values.week.person
+                            : cabinSize.total + values.week.person,
                       })
                     }
                     className="ml-2  p-1 rounded-lg cursor-pointer cabinsInput"

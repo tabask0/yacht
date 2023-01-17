@@ -4,12 +4,10 @@ import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 const Boat = ({
   boat,
-  handleFormData,
-  nextStep,
   values,
   setSelectedBoat,
   setSelectedBoatName,
-  selectedBoatName,
+  formatPrice,
 }) => {
   const submitFirst = () => {
     setSelectedBoat(true);
@@ -25,7 +23,9 @@ const Boat = ({
         <h1 style={{ color: boat.color }} className="font-bold h-10  text-xl">
           {boat.name}
         </h1>
-        <h1 style={{ color: "#838995" }}>From: €1,048/person</h1>
+        <h1 style={{ color: "#838995" }}>
+          From: €{formatPrice(values.week.person)}/person
+        </h1>
         <div className="flex flex-col ">
           <div className="flex flex-row justify-between mt-8">
             <div className="text-sm font-medium">Yacht Type:</div>

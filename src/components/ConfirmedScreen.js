@@ -32,7 +32,7 @@ const style = {
   p: 4,
 };
 
-const ConfirmedScreen = ({ values, prevStep, handleFormData }) => {
+const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
   const [q1, setQ1] = useState(false);
   const [q2, setQ2] = useState(false);
   const [q3, setQ3] = useState(false);
@@ -56,7 +56,6 @@ const ConfirmedScreen = ({ values, prevStep, handleFormData }) => {
   };
 
   useEffect(() => {
-    console.log(checked);
     checked === true && handleFormData("gdpr", checked);
   }, [checked]);
 
@@ -70,41 +69,35 @@ const ConfirmedScreen = ({ values, prevStep, handleFormData }) => {
     return `${newDate[0]} - ${newDate[1]}`;
   };
 
-  const form = useRef();
-  const [fname, setFName] = useState();
-  const [lname, setLName] = useState();
-  const [age, setAge] = useState();
-  const [email, setEmail] = useState();
+  const [toSend, setToSend] = useState({
+    first_name: "",
+    last_name: "",
+    week_start: values.week.start,
+    week_end: values.week.end,
+    total: "€" + values.cabin.total,
+    sail_type: values.category,
+    boat: values.boat,
+  });
+
+  const handleChange = (e) => {
+    setToSend({ ...toSend, [e.target.name]: e.target.value });
+  };
 
   const sendEmail = (e) => {
     e.preventDefault();
 
-    console.log(values);
-
     emailjs
-      .sendForm(
-        "service_vz1mhb8",
-        "template_8aom1se",
-        form.current,
-        "YuDSusaOKA9KG3ye3"
-      )
+      .send("service_vz1mhb8", "template_8aom1se", toSend, "YuDSusaOKA9KG3ye3")
       .then(
         (result) => {
-          console.log(result.text);
-          console.log("message sent");
+          alert("SUCCESS!");
         },
         (error) => {
           console.log(error.text);
         }
-      );
+      )
+      .then(() => nextStep());
   };
-
-  useEffect(() => {
-    handleFormData("firstName", fname);
-    handleFormData("lastName", lname);
-    handleFormData("age", age);
-    handleFormData("email", email);
-  }, [fname, lname, age, email]);
 
   return (
     <div
@@ -553,7 +546,16 @@ const ConfirmedScreen = ({ values, prevStep, handleFormData }) => {
               </div>
               <div className="flex flex-col justify-between mb-2">
                 <h1 className="font-semibold text-xl mt-4">
-                  €{values.cabin !== null ? formatPrice(values.week.full) : ""}
+                  €
+                  {values.cabin !== null
+                    ? formatPrice(
+                        (values.cabin.boysCabin +
+                          values.cabin.girlsCabin +
+                          values.cabin.mixedCabin) *
+                          values.week.person *
+                          2
+                      )
+                    : ""}
                 </h1>
                 <h1
                   style={{ color: "#B8BDC7" }}
@@ -574,7 +576,15 @@ const ConfirmedScreen = ({ values, prevStep, handleFormData }) => {
                 <div className="flex flex-row justify-between font-semibold text-sm mt-2">
                   <h1 className="font-semibold text-sm">Cabin rental</h1>
                   <h1 className="font-semibold text-sm">
-                    {values.cabin ? formatPrice(values.week.full) : ""}
+                    {values.cabin
+                      ? formatPrice(
+                          (values.cabin.boysCabin +
+                            values.cabin.girlsCabin +
+                            values.cabin.mixedCabin) *
+                            values.week.person *
+                            2
+                        )
+                      : ""}
                   </h1>
                 </div>
                 <div className="flex flex-row justify-between mt-2">
@@ -589,7 +599,16 @@ const ConfirmedScreen = ({ values, prevStep, handleFormData }) => {
               <div className="flex flex-row justify-between mb-2">
                 <h1 className="font-semibold text-xl mt-4">Total</h1>
                 <h1 className="font-semibold text-xl mt-4">
-                  €{values.cabin !== null ? formatPrice(values.week.full) : ""}
+                  €
+                  {values.cabin !== null
+                    ? formatPrice(
+                        (values.cabin.boysCabin +
+                          values.cabin.girlsCabin +
+                          values.cabin.mixedCabin) *
+                          values.week.person *
+                          2
+                      )
+                    : ""}
                 </h1>
               </div>
               {values.fullYacht === true && (
@@ -624,6 +643,15 @@ const ConfirmedScreen = ({ values, prevStep, handleFormData }) => {
                   <h1 className="font-semibold text-sm">Boys</h1>
                   <h1 className="font-semibold text-sm">
                     {values.cabin !== null && values.cabin.boysCabin}
+                  </h1>
+                </div>
+                <div
+                  style={{ color: "#B7BCC6" }}
+                  className="flex flex-row justify-between font-semibold text-sm mt-2"
+                >
+                  <h1 className="font-semibold text-sm">Mixed</h1>
+                  <h1 className="font-semibold text-sm">
+                    {values.cabin !== null && values.cabin.mixedCabin}
                   </h1>
                 </div>
                 <hr style={{ color: "#E0E4EA" }} className="mt-4 w-full" />
@@ -690,49 +718,53 @@ const ConfirmedScreen = ({ values, prevStep, handleFormData }) => {
       >
         <Box sx={style}>
           <StyledContactForm>
-            <form ref={form} onSubmit={sendEmail}>
+            <form onSubmit={sendEmail}>
               <label>First Name</label>
               <input
-                onChange={(e) => setFName(e.target.value)}
+                onChange={handleChange}
                 type="text"
                 name="first_name"
+                value={toSend.first_name}
               />
               <label>Last Name</label>
               <input
-                onChange={(e) => setLName(e.target.value)}
                 type="text"
+                onChange={handleChange}
+                value={toSend.last_name}
                 name="last_name"
               />
-              <label>Age</label>
-              <input
-                onChange={(e) => setAge(e.target.value)}
-                type="number"
-                name="age"
-              />
               <label>Email</label>
+              <input onChange={handleChange} type="email" name="user_email" />
               <input
-                onChange={(e) => setEmail(e.target.value)}
-                type="email"
-                name="user_email"
-              />
-              <label>Message</label>
-              <textarea name="message" />
-              <input
+                type="text"
                 style={{ display: "none" }}
-                name="values.week.start"
-                defaultValue={JSON.stringify(values.week.start)}
+                name="week_start"
+                value={toSend.week_start}
               />
               <input
+                type="text"
                 style={{ display: "none" }}
-                name="values.week.end"
-                defaultValue={JSON.stringify(values.week.end)}
+                name="week_end"
+                value={toSend.week_end}
               />
               <input
+                type="text"
                 style={{ display: "none" }}
-                name="values.cabin.total"
-                defaultValue={JSON.stringify(values.cabin.total)}
+                name="total"
+                value={toSend.total}
               />
-
+              <input
+                type="text"
+                style={{ display: "none" }}
+                name="sail_type"
+                value={toSend.sail_type}
+              />
+              <input
+                type="text"
+                style={{ display: "none" }}
+                name="boat"
+                value={toSend.boat}
+              />
               <input type="submit" value="Send" />
             </form>
           </StyledContactForm>

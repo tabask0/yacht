@@ -4,6 +4,7 @@ import { useState } from "react";
 import Booking from "./components/Booking";
 import Crew from "./components/Crew";
 import ConfirmedScreen from "./components/ConfirmedScreen";
+import Confirm from "./components/Confirm";
 import SailType from "./components/SailType";
 
 const Home = () => {
@@ -75,6 +76,17 @@ const Home = () => {
       return (
         <div style={{ backgroundColor: "#F3F6F5", minHeight: "100vh" }}>
           <ConfirmedScreen
+            values={formData}
+            prevStep={prevStep}
+            nextStep={nextStep}
+            handleFormData={handleInputData}
+          />
+        </div>
+      );
+    case 5:
+      return (
+        <div style={{ backgroundColor: "#F3F6F5", minHeight: "100vh" }}>
+          <Confirm
             values={formData}
             prevStep={prevStep}
             nextStep={nextStep}
