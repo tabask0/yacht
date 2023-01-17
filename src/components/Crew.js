@@ -185,7 +185,7 @@ const Crew = ({ week, values, nextStep, prevStep, handleFormData }) => {
                     <h1 className="font-semibold">2 Mixed cabin</h1>
                     <p style={{ color: "#2E90FF" }}>You and friend</p>
                     <p style={{ color: "#333333" }}>
-                      {formatPrice(values.week.person)}€/person
+                      {formatPrice(values.week.person * 2)}€/cabin
                     </p>
                   </div>
                 </div>
@@ -218,7 +218,7 @@ const Crew = ({ week, values, nextStep, prevStep, handleFormData }) => {
                         total:
                           cabinSize.total === null
                             ? values.week.person
-                            : cabinSize.total + values.week.person,
+                            : cabinSize.total + values.week.person * 2,
                       })
                     }
                     className="ml-2  p-1 rounded-lg cursor-pointer cabinsInput"

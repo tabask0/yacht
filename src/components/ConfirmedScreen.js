@@ -547,15 +547,14 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
               <div className="flex flex-col justify-between mb-2">
                 <h1 className="font-semibold text-xl mt-4">
                   €
-                  {values.cabin !== null
+                  {values.fullYacht === false
                     ? formatPrice(
                         (values.cabin.boysCabin +
                           values.cabin.girlsCabin +
-                          values.cabin.mixedCabin) *
-                          values.week.person *
-                          2
+                          values.cabin.mixedCabin * 2) *
+                          values.week.person
                       )
-                    : ""}
+                    : formatPrice(values.week.full)}
                 </h1>
                 <h1
                   style={{ color: "#B8BDC7" }}
@@ -576,15 +575,14 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
                 <div className="flex flex-row justify-between font-semibold text-sm mt-2">
                   <h1 className="font-semibold text-sm">Cabin rental</h1>
                   <h1 className="font-semibold text-sm">
-                    {values.cabin
+                    {values.fullYacht === false
                       ? formatPrice(
                           (values.cabin.boysCabin +
                             values.cabin.girlsCabin +
-                            values.cabin.mixedCabin) *
-                            values.week.person *
-                            2
+                            values.cabin.mixedCabin * 2) *
+                            values.week.person
                         )
-                      : ""}
+                      : formatPrice(values.week.full)}
                   </h1>
                 </div>
                 <div className="flex flex-row justify-between mt-2">
@@ -600,15 +598,14 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
                 <h1 className="font-semibold text-xl mt-4">Total</h1>
                 <h1 className="font-semibold text-xl mt-4">
                   €
-                  {values.cabin !== null
+                  {values.fullYacht === false
                     ? formatPrice(
                         (values.cabin.boysCabin +
                           values.cabin.girlsCabin +
-                          values.cabin.mixedCabin) *
-                          values.week.person *
-                          2
+                          values.cabin.mixedCabin * 2) *
+                          values.week.person
                       )
-                    : ""}
+                    : formatPrice(values.week.full)}
                 </h1>
               </div>
               {values.fullYacht === true && (

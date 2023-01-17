@@ -22,9 +22,10 @@ const Week = ({ nextStep, prevStep, handleFormData, values, week, index }) => {
     const newDate = date.split(".");
     const formattedDate = new Date(
       newDate[2] ? newDate[2] : "",
-      newDate[1],
+      newDate[1] - 1,
       newDate[0]
     );
+    console.log(newDate[0], newDate[1], newDate[2]);
 
     return moment(formattedDate).format("DD MMM");
   };
