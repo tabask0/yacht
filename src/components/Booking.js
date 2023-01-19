@@ -3,8 +3,11 @@ import moment from "moment";
 import Navbar from "./Navbar";
 import Week from "./Week";
 import { sails } from "../assets/sails";
+import { useTranslation } from "react-i18next";
 
 const Booking = ({ nextStep, prevStep, handleFormData, values }) => {
+  const { t } = useTranslation();
+
   return (
     <div>
       <Navbar />
@@ -14,22 +17,22 @@ const Booking = ({ nextStep, prevStep, handleFormData, values }) => {
             onClick={() => prevStep()}
             className="p-4 border-b-8 border-gri cursor-pointer"
           >
-            Category
+            {t("Category")}
           </span>
-          <span className="p-4 border-b-8 border-albastru">Week</span>
-          <span className="p-4 border-b-8 border-gri">Boat</span>
-          <span className="p-4 border-b-8 border-gri">Confirm</span>
+          <span className="p-4 border-b-8 border-albastru">{t("Week")}</span>
+          <span className="p-4 border-b-8 border-gri">{t("Boat")}</span>
+          <span className="p-4 border-b-8 border-gri">{t("Confirm")}</span>
         </div>
         <button
           onClick={() => prevStep()}
           className="w-16 mx-auto mt-10 text-alb rounded bg-albastru"
         >
-          Back
+          {t("Back")}
         </button>
       </div>
       <div className="text-center mt-24">
         <span>
-          You are sailing in
+          {t("You are sailing in")}
           <b> Croatia 🇭🇷</b>
         </span>
       </div>

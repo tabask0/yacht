@@ -9,6 +9,7 @@ import SailType from "./components/SailType";
 
 const Home = () => {
   const [step, setstep] = useState(1);
+  const [language, setLanguage] = useState();
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -22,6 +23,7 @@ const Home = () => {
     cabin: null,
     fullYacht: null,
     gdpr: null,
+    language: "",
   });
 
   const nextStep = () => {
@@ -44,6 +46,8 @@ const Home = () => {
       return (
         <div style={{ backgroundColor: "#F3F6F5", minHeight: "100vh" }}>
           <SailType
+            language={language}
+            setLanguage={setLanguage}
             nextStep={nextStep}
             handleFormData={handleInputData}
             values={formData}
@@ -54,6 +58,8 @@ const Home = () => {
       return (
         <div style={{ backgroundColor: "#F3F6F5", minHeight: "100vh" }}>
           <Booking
+            language={language}
+            setLanguage={setLanguage}
             nextStep={nextStep}
             prevStep={prevStep}
             handleFormData={handleInputData}
@@ -65,6 +71,8 @@ const Home = () => {
       return (
         <div style={{ backgroundColor: "#F3F6F5", minHeight: "100vh" }}>
           <Crew
+            language={language}
+            setLanguage={setLanguage}
             nextStep={nextStep}
             prevStep={prevStep}
             handleFormData={handleInputData}
@@ -76,6 +84,8 @@ const Home = () => {
       return (
         <div style={{ backgroundColor: "#F3F6F5", minHeight: "100vh" }}>
           <ConfirmedScreen
+            language={language}
+            setLanguage={setLanguage}
             values={formData}
             prevStep={prevStep}
             nextStep={nextStep}
@@ -87,6 +97,8 @@ const Home = () => {
       return (
         <div style={{ backgroundColor: "#F3F6F5", minHeight: "100vh" }}>
           <Confirm
+            language={language}
+            setLanguage={setLanguage}
             values={formData}
             prevStep={prevStep}
             nextStep={nextStep}

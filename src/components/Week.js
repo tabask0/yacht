@@ -1,10 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import moment from "moment";
+import { useTranslation } from "react-i18next";
+import "moment/locale/ro";
 
 const Week = ({ nextStep, prevStep, handleFormData, values, week, index }) => {
+  const { t } = useTranslation();
+
   const [iconActive, setIconActive] = useState(false);
+
+  useEffect(() => {
+    const lang = localStorage.getItem("language");
+    lang === "ro" ? moment.locale("ro") : moment.locale("en");
+  }, []);
 
   const submitFirst = () => {
     handleFormData("week", {
@@ -27,7 +36,7 @@ const Week = ({ nextStep, prevStep, handleFormData, values, week, index }) => {
     );
     console.log(newDate[0], newDate[1], newDate[2]);
 
-    return moment(formattedDate).format("DD MMM");
+    return moment(formattedDate).format("DD MMM").replace(".", "");
   };
 
   const formatPrice = (price) => {
@@ -66,8 +75,9 @@ const Week = ({ nextStep, prevStep, handleFormData, values, week, index }) => {
         </div>
         <div className="flex flex-row  justify-between ml-4 mt-4">
           <h1 style={{ fontFamily: "sofia" }} className="text-gri">
-            Week {moment(formatDate(week.start), "DD MMM YYYY").isoWeek()} from{" "}
-            {formatPrice(week.person)}€/person
+            {t("week")}{" "}
+            {moment(formatDate(week.start), "DD MMM YYYY").isoWeek()}{" "}
+            {t("from")} {formatPrice(week.person)}€/{t("person")}
           </h1>
           <FontAwesomeIcon
             className="cursor-pointer"
@@ -81,7 +91,7 @@ const Week = ({ nextStep, prevStep, handleFormData, values, week, index }) => {
               className="w-2/3 h-10 mx-auto rounded-xl mt-6"
               style={{ backgroundColor: "#0084FE", color: "white" }}
             >
-              Select
+              {t("Select")}
             </button>
           )}
         </div>

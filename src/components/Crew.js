@@ -5,8 +5,11 @@ import Boat from "./Boat";
 import BoatSize from "./BoatSize";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUsers, faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
+import { useTranslation } from "react-i18next";
 
 const Crew = ({ week, values, nextStep, prevStep, handleFormData }) => {
+  const { t } = useTranslation();
+
   const [selectedBoat, setSelectedBoat] = useState(false);
   const [selectedBoatName, setSelectedBoatName] = useState("");
   const [selectedBoatSize, setSelectedBoatSize] = useState(null);
@@ -50,28 +53,28 @@ const Crew = ({ week, values, nextStep, prevStep, handleFormData }) => {
       <div className="flex flex-col justify-center mt-24 text-center">
         <div className="flex flex-row justify-center">
           <span className="p-4 border-b-8 border-gri cursor-pointer">
-            Category
+            {t("Category")}
           </span>
           <span
             onClick={() => prevStep()}
             className="p-4 border-b-8 border-gri cursor-pointer"
           >
-            Week
+            {t("Week")}
           </span>
-          <span className="p-4 border-b-8 border-albastru">Boat</span>
-          <span className="p-4 border-b-8 border-gri">Confirm</span>
+          <span className="p-4 border-b-8 border-albastru">{t("Boat")}</span>
+          <span className="p-4 border-b-8 border-gri">{t("Confirm")}</span>
         </div>
         <button
           onClick={() => prevStep()}
           className="w-16 mx-auto mt-10 text-alb rounded bg-albastru"
         >
-          Back
+          {t("Back")}
         </button>
       </div>
       <div className="text-center mt-24">
         <div className="flex flex-row justify-center m-2 flex-wrap">
-          You are sailing in
-          <b className="mr-2 ml-2"> Croatia 🇭🇷</b> on{" "}
+          {t("You are sailing in")}
+          <b className="mr-2 ml-2"> Croatia 🇭🇷</b> {t("on")}{" "}
           <p className="mr-2 ml-2 font-bold flex flex-row">
             {formatDate(values.week.start + " " + values.week.end)}
           </p>

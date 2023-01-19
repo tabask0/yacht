@@ -3,6 +3,7 @@ import "./index.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Contact from "./components/Contact";
 import Home from "./Home";
+import "./i18n";
 
 function App() {
   return (

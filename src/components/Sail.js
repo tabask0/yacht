@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 const Sail = ({ content, week, nextStep, handleFormData, values }) => {
+  const { t } = useTranslation();
+
   const submitFirst = (e) => {
     handleFormData("category", content.name);
     handleFormData(
@@ -23,8 +26,8 @@ const Sail = ({ content, week, nextStep, handleFormData, values }) => {
           {content.name}
         </h1>
         <div style={{ fontFamily: "sofia" }} className="text-gri mt-8 h-22">
-          <p className="row ml-3">2 Yachts</p>
-          <p className="row ml-3">3+ Cabins</p>
+          <p className="row ml-3">2 {t("Yachts")}</p>
+          <p className="row ml-3">3+ {t("Cabins")}</p>
           <p className="row ml-3">-</p>
         </div>
         <p>{}</p>
@@ -32,7 +35,7 @@ const Sail = ({ content, week, nextStep, handleFormData, values }) => {
           onClick={() => submitFirst()}
           className="w-44 h-8 mx-auto rounded-xl mt-6 buttons"
         >
-          Select
+          {t("Select")}
         </button>
       </div>
     </div>
