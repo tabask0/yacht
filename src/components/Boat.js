@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { useTranslation } from "react-i18next";
 
 const Boat = ({
   boat,
@@ -9,6 +10,8 @@ const Boat = ({
   setSelectedBoatName,
   formatPrice,
 }) => {
+  const { t } = useTranslation();
+
   const submitFirst = () => {
     setSelectedBoat(true);
     setSelectedBoatName(boat.name);
@@ -24,19 +27,19 @@ const Boat = ({
           {boat.name}
         </h1>
         <h1 style={{ color: "#838995" }}>
-          From: €{formatPrice(values.week.person)}/person
+          {t("From")}: €{formatPrice(values.week.person)}/{t("person")}
         </h1>
         <div className="flex flex-col ">
           <div className="flex flex-row justify-between mt-8">
-            <div className="text-sm font-medium">Yacht Type:</div>
+            <div className="text-sm font-medium">{t("Yacht Type")}:</div>
             <div className="text-sm font-medium ml-7">{boat.type}</div>
           </div>
           <div className="mt-4 flex flex-end text-sm font-medium">
-            <div className="text-sm font-medium">Yach Age:</div>
+            <div className="text-sm font-medium">{t("Yach Age")}:</div>
             <div className="text-sm font-medium ml-10">{boat.age}</div>
           </div>
           <div className="mt-4 flex flex-end text-sm font-medium">
-            <div className="text-sm font-medium">Capacity:</div>
+            <div className="text-sm font-medium">{t("Capacity")}:</div>
             <div className="text-sm font-medium ml-11">{boat.capacity}</div>
           </div>
           <div className="mt-4 flex flex-end text-sm font-medium">

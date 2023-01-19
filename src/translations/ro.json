@@ -12,5 +12,21 @@
   "from": "de la",
   "From": "De la",
   "person": "persoana",
-  "on": "in perioada"
+  "on": "in perioada",
+  "Yacht Type": "Tipul Yachtului",
+  "Yacht Age": "Varsta Yachtului",
+  "Capacity": "Capacitatea",
+  "Full Yacht": "Intregul Yacht",
+  "people": "oameni",
+  "Food": "Mancare",
+  "YachtDescription": "Petrece o saptamana de neuitat pe un yacht care va fi ca si casa ta si a altor 7 prieteni impreuna cu un skipper",
+  "CabinDescription": "Porneste calatoria cu alti aventurieri ca si tine intr-o cabina pe un yacht pe care il imparti cu altii. Rezerva cu un prieten o cabina pe care o puteti imparti",
+  "Add a crew": "Adauga echipaj",
+  "BoysCabin": "Cabina de 2 baieti",
+  "GirlsCabin": "Cabina de 2 fete",
+  "MixedCabin": "Cabina de un baiat si o fata",
+  "YouFriend": "Tu si un prieten",
+  "YouGFriend": "Tu si un/o prieten/a",
+  "2Girls": "Tu si o prietena",
+  "cabin": "cabina"
 }

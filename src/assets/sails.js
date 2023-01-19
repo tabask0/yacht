@@ -387,7 +387,7 @@ export const boatSize = [
     host: true,
     food: false,
     price: "1,048€/person",
-    capacity: "6 - 8 people",
+    capacity: "6 - 8",
     description:
       "Spend an unforgettable week on a yacht that's home to you, up to 7 of your friends and your very own skipper",
   },
@@ -397,7 +397,7 @@ export const boatSize = [
     host: false,
     food: false,
     price: "350€/person",
-    capacity: "1 - 4 people",
+    capacity: "1 - 4",
     description:
       "Set sail with like-minded adventurers in a cabin on a shared classic monohull yacht. Book with a mate to share a double cabin.",
   },

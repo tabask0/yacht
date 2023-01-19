@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "./Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
+import { useTranslation } from "react-i18next";
 
 const BoatSize = ({
   prevStep,
@@ -12,6 +13,8 @@ const BoatSize = ({
   submitFirst,
   values,
 }) => {
+  const { t } = useTranslation();
+
   const formatPrice = (price) => {
     const str = JSON.stringify(price);
     return str.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -24,14 +27,14 @@ const BoatSize = ({
       <div className="w-full  flex flex-col bg-white mt-44">
         <h1 className="font-bold h-10 text-2xl">{boats.name}</h1>
         <h1 className="font-bold mb-2" style={{ color: "#838995" }}>
-          From:{" "}
+          {t("From")}:{" "}
           {boats.name === "Full Yacht"
             ? formatPrice(values.week.full)
             : formatPrice(values.week.person)}
-          €/person
+          €/{t("person")}
         </h1>
         <p className="mb-4" style={{ color: "#838995" }}>
-          {boats.capacity}
+          {boats.capacity} {t("people")}
         </p>
         <div
           style={{ color: "#838995" }}
@@ -48,7 +51,7 @@ const BoatSize = ({
         </div>
         <div className="flex flex-row justify-between mb-2">
           <div className="font-semibold" style={{ color: "#838995" }}>
-            Food:
+            {t("Food")}:
           </div>
           <div>
             {boats.food === false && (
@@ -57,7 +60,9 @@ const BoatSize = ({
           </div>
         </div>
         <p className="h-20 mt-4" style={{ color: "#838995" }}>
-          {boats.description}
+          {boats.name === "Full Yacht"
+            ? t("YachtDescription", { YachtDescription: boats.description })
+            : t("CabinDescription", { CabinDescription: boats.description })}
         </p>
         <button
           onClick={() => {
@@ -67,7 +72,7 @@ const BoatSize = ({
           style={{ fontFamily: "sofia" }}
           className="w-full h-10 mt-10 p-1/2 rounded buttons"
         >
-          Select
+          {t("Select")}
         </button>
       </div>
     </div>

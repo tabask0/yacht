@@ -120,12 +120,12 @@ const Crew = ({ week, values, nextStep, prevStep, handleFormData }) => {
             className="w-full h-full flex flex-row justify-center md:justify-start shadow-lg mx-4 p-4 rounded-lg mt-24 mb-12"
           >
             <div className="w-full flex flex-col bg-white p-2">
-              <h1 className="font-bold h-10 text-3xl">Cabins</h1>
+              <h1 className="font-bold h-10 text-3xl">{t("Cabins")}</h1>
               <h1
                 className="font-bold mb-2 text-xl"
                 style={{ color: "#B2B7C2" }}
               >
-                Add a crew
+                {t("Add a crew")}
               </h1>
               <div className="flex flex-row justify-between">
                 <div className="flex flex-row justify-center">
@@ -134,10 +134,10 @@ const Crew = ({ week, values, nextStep, prevStep, handleFormData }) => {
                     icon={faUsers}
                   />
                   <div>
-                    <h1 className="font-semibold">2 Boy cabin</h1>
-                    <p style={{ color: "#2E90FF" }}>You and friend</p>
+                    <h1 className="font-semibold">{t("BoysCabin")}</h1>
+                    <p style={{ color: "#2E90FF" }}>{t("YouFriend")}</p>
                     <p style={{ color: "#333333" }}>
-                      {formatPrice(values.week.person)}€/person
+                      {formatPrice(values.week.person)}€/{t("person")}
                     </p>
                   </div>
                 </div>
@@ -185,10 +185,10 @@ const Crew = ({ week, values, nextStep, prevStep, handleFormData }) => {
                     icon={faUsers}
                   />
                   <div>
-                    <h1 className="font-semibold">2 Mixed cabin</h1>
-                    <p style={{ color: "#2E90FF" }}>You and friend</p>
+                    <h1 className="font-semibold">{t("MixedCabin")}</h1>
+                    <p style={{ color: "#2E90FF" }}>{t("YouGFriend")}</p>
                     <p style={{ color: "#333333" }}>
-                      {formatPrice(values.week.person * 2)}€/cabin
+                      {formatPrice(values.week.person * 2)}€/{t("cabin")}
                     </p>
                   </div>
                 </div>
@@ -236,10 +236,10 @@ const Crew = ({ week, values, nextStep, prevStep, handleFormData }) => {
                     icon={faUsers}
                   />
                   <div>
-                    <h1 className="font-semibold">2 Girl cabin</h1>
-                    <p style={{ color: "#2E90FF" }}>You and friend</p>
+                    <h1 className="font-semibold">{t("GirlsCabin")}</h1>
+                    <p style={{ color: "#2E90FF" }}>{t("2Girls")}</p>
                     <p style={{ color: "#333333" }}>
-                      {formatPrice(values.week.person)}€/person
+                      {formatPrice(values.week.person)}€/{t("person")}
                     </p>
                   </div>
                 </div>

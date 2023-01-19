@@ -19,6 +19,7 @@ import Modal from "@mui/material/Modal";
 import emailjs from "@emailjs/browser";
 import styled from "styled-components";
 import da from "../assets/da.jpeg";
+import { useTranslation } from "react-i18next";
 
 const style = {
   position: "absolute",
@@ -33,6 +34,8 @@ const style = {
 };
 
 const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
+  const { t } = useTranslation();
+
   const [q1, setQ1] = useState(false);
   const [q2, setQ2] = useState(false);
   const [q3, setQ3] = useState(false);
@@ -108,22 +111,22 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
       <div className="flex flex-col justify-center mt-24 text-center">
         <div className="flex flex-row justify-center">
           <span className="p-4 border-b-8 border-gri cursor-pointer">
-            Category
+            {t("Category")}
           </span>
-          <span className="p-4 border-b-8 border-gri">Week</span>
+          <span className="p-4 border-b-8 border-gri">{t("Week")}</span>
           <span
             onClick={() => prevStep()}
             className="p-4 border-b-8 border-gri cursor-pointer"
           >
-            Boat
+            {t("Boat")}
           </span>
-          <span className="p-4 border-b-8 border-albastru">Confirm</span>
+          <span className="p-4 border-b-8 border-albastru">{t("Confirm")}</span>
         </div>
         <button
           onClick={() => prevStep()}
           className="w-16 mx-auto mt-10 text-alb rounded bg-albastru"
         >
-          Back
+          {t("Back")}
         </button>
       </div>
       <div className="w-full flex flex-col justify-center mx-auto items-center mt-20 mb-20">
@@ -140,9 +143,9 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
               </div>
               <div className="flex flex-col mb-2">
                 <h1 className="mt-2" style={{ color: "#838995" }}>
-                  From:€
+                  {t("From")}:€
                   {values.cabin !== null ? formatPrice(values.week.person) : ""}
-                  /person
+                  /{t("person")}
                 </h1>
                 <h1 className="mt-2" style={{ color: "#B2B7C2" }}>
                   Up to{" "}

@@ -1,1 +1,11 @@
-{ "Week": "Week" }
+{
+  "Week": "Week",
+  "BoysCabin": "2 Boys cabin",
+  "GirlsCabin": "2 Girls cabin",
+  "MixedCabin": "Mixed Cabin",
+  "YouFriend": "you and friend",
+  "YouGFriend": "you and friend",
+  "2Girls": "you and friend",
+  "YachtDescription": "Spend an unforgettable week on a yacht that's home to you, up to 7 of your friends and your very own skipper",
+  "CabinDescription": "Set sail with like-minded adventurers in a cabin on a shared classic monohull yacht. Book with a mate to share a double cabin"
+}
