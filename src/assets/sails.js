@@ -346,7 +346,7 @@ export const boats = [
     id: 1,
     name: "Classic Monohull",
     color: "#00b1ab",
-    type: "44 - 51ft Monohull",
+    type: "35 - 40ft Monohull",
     age: "2013 - 2023",
     capacity: "8(4 cabins)",
     skipper: true,
