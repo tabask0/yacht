@@ -130,7 +130,7 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
         </button>
       </div>
       <div className="w-full flex flex-col justify-center mx-auto items-center mt-20 mb-20">
-        <h1 className="text-3xl font-bold">Booking summary</h1>
+        <h1 className="text-3xl font-bold">{t("Booking summary")}</h1>
         <div className="w-full flex  justify-center flex-wrap">
           <div
             style={{ backgroundColor: "white" }}
@@ -148,17 +148,16 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
                   /{t("person")}
                 </h1>
                 <h1 className="mt-2" style={{ color: "#B2B7C2" }}>
-                  Up to{" "}
+                  {t("Up to")}{" "}
                   {values.fullYacht === false
                     ? values.cabin.boysCabin * 2 +
                       values.cabin.mixedCabin * 2 +
                       values.cabin.girlsCabin * 2
                     : "10"}{" "}
-                  guests
+                  {t("guests")}
                 </h1>
                 <h1 className="mt-2 text-md" style={{ color: "#838995" }}>
-                  Two-person cabin on a Classic Monohull yacht for 6 days,
-                  including skipper.
+                  {t("ClassMono")}
                 </h1>
               </div>
               <div className="mt-10 hover:shadow-md">
@@ -166,7 +165,7 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
                   onClick={() => (q1 === false ? setQ1(true) : setQ1(false))}
                   className="flex justify-between summaryBox rounded-md hover:shadow-md cursor-pointer font-semibold"
                 >
-                  <h1>What's included?</h1>
+                  <h1>{t("What's included?")}</h1>
                   <FontAwesomeIcon className="text-xl" icon={faNoteSticky} />
                 </div>
                 {q1 === true && (
@@ -193,7 +192,7 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
                           style={{ color: "#838995" }}
                           className="text-sm font-normal ml-2"
                         >
-                          7 days and 6 nights
+                          {t("7 days and 6 nights")}
                         </h1>
                       </div>
                       <div className="flex mt-2">
@@ -217,7 +216,7 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
                           style={{ color: "#838995" }}
                           className="text-sm font-normal ml-2"
                         >
-                          Towels & bed linen
+                          {t("Towels & bed linen")}
                         </h1>
                       </div>
                       <div className="flex mt-2 mb-2">
@@ -229,7 +228,7 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
                           style={{ color: "#838995" }}
                           className=" text-sm font-normal ml-2"
                         >
-                          WIFI (sometimes – it is the ocean after all!)
+                          {t("WIFI (sometimes – it is the ocean after all!)")}
                         </h1>
                       </div>
                       <div className="flex mt-2 mb-2">
@@ -253,7 +252,9 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
                           style={{ color: "#838995" }}
                           className=" text-sm font-normal ml-2"
                         >
-                          All Access Pass to exclusive The Yacht Week events
+                          {t(
+                            "All Access Pass to exclusive The Yacht Week events"
+                          )}
                         </h1>
                       </div>
                       <div className="flex mt-2 mb-2">
@@ -265,7 +266,7 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
                           style={{ color: "#838995" }}
                           className=" text-sm font-normal ml-2"
                         >
-                          Stereo speakers
+                          {t("Stereo speakers")}
                         </h1>
                       </div>
                       <div className="flex mt-2 mb-2">
@@ -289,7 +290,7 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
                   onClick={() => (q2 === false ? setQ2(true) : setQ2(false))}
                   className="flex flex-row justify-between summaryBox rounded-md hover:shadow-md cursor-pointer font-semibold"
                 >
-                  <h1>Where do you sleep?</h1>
+                  <h1>{t("Where do you sleep?")}</h1>
                   <FontAwesomeIcon className="text-xl" icon={faBed} />
                 </div>
                 {q2 === true && (
@@ -300,7 +301,7 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
                           style={{ color: "#838995" }}
                           className="text-sm font-normal ml-2"
                         >
-                          You will have to choose one of the free cabins.
+                          {t("You will have to choose one of the free cabins.")}
                         </h1>
                       </div>
                     </div>
@@ -312,7 +313,7 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
                   onClick={() => (q3 === false ? setQ3(true) : setQ3(false))}
                   className="flex flex-row justify-between summaryBox rounded-md hover:shadow-md cursor-pointer font-semibold"
                 >
-                  <h1>Are there any extra costs?</h1>
+                  <h1>{t("Are there any extra costs?")}</h1>
                   <FontAwesomeIcon className="text-xl" icon={faCoins} />
                 </div>
                 {q3 === true && (
@@ -323,7 +324,7 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
                           style={{ color: "#838995" }}
                           className="text-sm font-normal ml-2 mb-4"
                         >
-                          These costs are not included in your booking.
+                          {t("These costs are not included in your booking.")}
                         </h1>
                       </div>
                       <div className="flex mt-2">
@@ -335,7 +336,7 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
                           style={{ color: "#838995" }}
                           className="text-sm font-normal ml-2"
                         >
-                          Port fees
+                          {t("Port fees")}
                         </h1>
                       </div>
                       <div className="flex mt-2">
@@ -347,7 +348,7 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
                           style={{ color: "#838995" }}
                           className="text-sm font-normal ml-2"
                         >
-                          Refundable yacht deposit
+                          {t("Refundable yacht deposit")}
                         </h1>
                       </div>
                       <div className="flex mt-2">
@@ -359,7 +360,7 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
                           style={{ color: "#838995" }}
                           className="text-sm font-normal ml-2"
                         >
-                          Alcohol and meals out
+                          {t("Alcohol and meals out")}
                         </h1>
                       </div>
                       <div className="flex mt-2">
@@ -383,7 +384,7 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
                           style={{ color: "#838995" }}
                           className=" text-sm font-normal ml-2"
                         >
-                          Yacht fuel, shore power
+                          {t("Yacht fuel, shore power")}
                         </h1>
                       </div>
                       <div className="flex mt-2">
@@ -395,7 +396,7 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
                           style={{ color: "#838995" }}
                           className=" text-sm font-normal ml-2"
                         >
-                          Transfers to and from the airport
+                          {t("Transfers to and from the airport")}
                         </h1>
                       </div>
                       <div className="flex mt-2 mb-2">
@@ -407,7 +408,7 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
                           style={{ color: "#838995" }}
                           className=" text-sm font-normal ml-2"
                         >
-                          Additional dinners for skipper & host
+                          {t("Additional dinners for skipper & host")}
                         </h1>
                       </div>
                     </div>
@@ -419,7 +420,7 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
                   onClick={() => (q4 === false ? setQ4(true) : setQ4(false))}
                   className="flex flex-row justify-between summaryBox rounded-md hover:shadow-md cursor-pointer font-semibold"
                 >
-                  <h1>Who will my crew be?</h1>
+                  <h1>{t("Who will my crew be?")}</h1>
                   <FontAwesomeIcon className="text-xl" icon={faPeopleGroup} />
                 </div>
                 {q4 === true && (
@@ -430,10 +431,7 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
                           style={{ color: "#838995" }}
                           className="text-sm font-normal ml-2"
                         >
-                          You’ll be matched up with your crew of 6-8 other cabin
-                          bookers two weeks before you set sail (plus your
-                          skipper). You’ll be able to chat with them and plan
-                          your week through our Day 8 app.
+                          {t("Crew1")}
                         </h1>
                       </div>
                       <div className="flex mt-2">
@@ -441,10 +439,7 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
                           style={{ color: "#838995" }}
                           className="text-sm font-normal ml-2"
                         >
-                          We usually aim to have a 50/50 gender ratio on all
-                          cabin booking yachts. However this does depend on how
-                          many bookings are made and we cannot guarantee that
-                          this will be the case on all yachts.
+                          {t("Crew2")}
                         </h1>
                       </div>
                     </div>
@@ -456,7 +451,7 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
                   onClick={() => (q5 === false ? setQ5(true) : setQ5(false))}
                   className="flex flex-row justify-between summaryBox rounded-md hover:shadow-md cursor-pointer font-semibold"
                 >
-                  <h1>What yacht will I be sailing on?</h1>
+                  <h1>{t("What yacht will I be sailing on?")}</h1>
                   <FontAwesomeIcon className="text-xl" icon={faSailboat} />
                 </div>
                 {q5 === true && (
@@ -479,7 +474,7 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
                   onClick={() => (q6 === false ? setQ6(true) : setQ6(false))}
                   className="flex flex-row justify-between summaryBox rounded-md hover:shadow-md cursor-pointer font-semibold"
                 >
-                  <h1>Refundable yacht deposit</h1>
+                  <h1>{t("Refundable yacht deposit")}</h1>
                   <FontAwesomeIcon className="text-xl" icon={faCreditCard} />
                 </div>
                 {q6 === true && (
@@ -490,13 +485,7 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
                           style={{ color: "#838995" }}
                           className="font-normal text-md ml-2"
                         >
-                          You’ll find out your deposit amount once your yacht
-                          has been assigned. A security deposit is payable in
-                          card or cash to the yachting company on arrival. This
-                          protects against any damages caused by you to the
-                          yacht during the week and is fully refundable,
-                          assuming no damage is caused. You will not be liable
-                          for any damage caused by your skipper.
+                          {t("Crew3")}
                         </h1>
                       </div>
                     </div>
@@ -508,7 +497,7 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
                   onClick={() => (q7 === false ? setQ7(true) : setQ7(false))}
                   className="flex flex-row justify-between summaryBox rounded-md hover:shadow-md cursor-pointer font-semibold"
                 >
-                  <h1>What airport do I fly into?</h1>
+                  <h1>{t("What airport do I fly into?")}</h1>
                   <FontAwesomeIcon className="text-xl" icon={faPlane} />
                 </div>
                 {q7 === true && (
@@ -519,12 +508,7 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
                           style={{ color: "#838995" }}
                           className="font-normal text-md ml-2"
                         >
-                          Split Airport, also known as Resnik Airport, is the
-                          airport you will need to fly to if you are planning on
-                          joining us in Croatia for The Yacht Week. Located near
-                          most of the main marinas, Split Airport is a major
-                          transportation hub that offers a wide range of
-                          domestic and international flights.
+                          {t("Crew4")}
                         </h1>
                       </div>
                     </div>
@@ -539,7 +523,7 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
           >
             <div className="w-full flex flex-col bg-white mt-44">
               <div className="flex flex-col justify-between mb-2 font-semibold">
-                <h1>Croatia - Original Route</h1>
+                <h1>Croatia - {t("Original Route")}</h1>
                 <h1 style={{ color: "#B8BDC7" }} className="text-sm mt-2">
                   {values.week
                     ? formatDate(values.week.start + " " + values.week.end)
@@ -563,20 +547,20 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
                   style={{ color: "#B8BDC7" }}
                   className="font-semibold text-sm mt-2"
                 >
-                  Based on{" "}
+                  {t("Based on")}{" "}
                   {values.fullYacht === true
                     ? "10"
                     : values.cabin.boysCabin * 2 +
                       values.cabin.mixedCabin * 2 +
                       values.cabin.girlsCabin * 2}{" "}
-                  guests
+                  {t("guests")}
                 </h1>
                 <hr style={{ color: "#E0E4EA" }} className="mt-4 w-full" />
               </div>
               <div className="flex flex-col justify-between mb-2">
                 <h1 className="font-semibold text-xl mt-4">Cost breakdown</h1>
                 <div className="flex flex-row justify-between font-semibold text-sm mt-2">
-                  <h1 className="font-semibold text-sm">Cabin rental</h1>
+                  <h1 className="font-semibold text-sm">{t("Cabin rental")}</h1>
                   <h1 className="font-semibold text-sm">
                     {values.fullYacht === false
                       ? formatPrice(
