@@ -25,7 +25,9 @@ const BoatSize = ({
       className="w-80 flex flex-row justify-center md:justify-start shadow-lg mx-4 p-4 rounded-lg mt-10 h-full"
     >
       <div className="w-full  flex flex-col bg-white mt-44">
-        <h1 className="font-bold h-10 text-2xl">{boats.name}</h1>
+        <h1 className="font-bold h-10 text-2xl">
+          {boats.name === "Cabins" ? t("Cabins") : t("Full Yacht")}
+        </h1>
         <h1 className="font-bold mb-2" style={{ color: "#838995" }}>
           {t("From")}:{" "}
           {boats.name === "Full Yacht"

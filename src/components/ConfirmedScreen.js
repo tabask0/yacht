@@ -93,7 +93,7 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
       .send("service_vz1mhb8", "template_8aom1se", toSend, "YuDSusaOKA9KG3ye3")
       .then(
         (result) => {
-          alert("SUCCESS!");
+          console.log(result);
         },
         (error) => {
           console.log(error.text);
@@ -558,7 +558,9 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
                 <hr style={{ color: "#E0E4EA" }} className="mt-4 w-full" />
               </div>
               <div className="flex flex-col justify-between mb-2">
-                <h1 className="font-semibold text-xl mt-4">Cost breakdown</h1>
+                <h1 className="font-semibold text-xl mt-4">
+                  {t("Cost breakdown")}
+                </h1>
                 <div className="flex flex-row justify-between font-semibold text-sm mt-2">
                   <h1 className="font-semibold text-sm">{t("Cabin rental")}</h1>
                   <h1 className="font-semibold text-sm">
@@ -597,7 +599,9 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
               </div>
               {values.fullYacht === true && (
                 <div className="flex flex-row mt-2">
-                  <h1 className="font-semibold text-md">Crew members:</h1>
+                  <h1 className="font-semibold text-md">
+                    {t("Crew members")}:
+                  </h1>
                   <h1 className="font-semibold text-md ml-2">11</h1>
                 </div>
               )}
@@ -608,14 +612,14 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
                       values.cabin.mixedCabin +
                       values.cabin.girlsCabin +
                       " " +
-                      "cabins selected"
-                    : "Full Yacht selected"}
+                      t("cabins selected")
+                    : t("Full Yacht selected")}
                 </h1>
                 <div
                   style={{ color: "#B7BCC6" }}
                   className="flex flex-row justify-between font-semibold text-sm mt-2"
                 >
-                  <h1 className="font-semibold text-sm">Girls</h1>
+                  <h1 className="font-semibold text-sm">{t("Girls")}</h1>
                   <h1 className="font-semibold text-sm">
                     {values.cabin !== null && values.cabin.girlsCabin}
                   </h1>
@@ -624,7 +628,7 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
                   style={{ color: "#B7BCC6" }}
                   className="flex flex-row justify-between font-semibold text-sm mt-2"
                 >
-                  <h1 className="font-semibold text-sm">Boys</h1>
+                  <h1 className="font-semibold text-sm">{t("Boys")}</h1>
                   <h1 className="font-semibold text-sm">
                     {values.cabin !== null && values.cabin.boysCabin}
                   </h1>
@@ -633,7 +637,7 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
                   style={{ color: "#B7BCC6" }}
                   className="flex flex-row justify-between font-semibold text-sm mt-2"
                 >
-                  <h1 className="font-semibold text-sm">Mixed</h1>
+                  <h1 className="font-semibold text-sm">{t("Mixed")}</h1>
                   <h1 className="font-semibold text-sm">
                     {values.cabin !== null && values.cabin.mixedCabin}
                   </h1>
@@ -641,10 +645,12 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
                 <hr style={{ color: "#E0E4EA" }} className="mt-4 w-full" />
               </div>
               <div className="flex flex-col justify-between mb-2">
-                <h1 className="font-semibold text-lg mt-4">Flexibility</h1>
+                <h1 className="font-semibold text-lg mt-4">
+                  {t("Flexibility")}
+                </h1>
                 <div className="flex flex-row justify-between font-semibold text-sm mt-2">
                   <h1 className="font-semibold text-sm">
-                    Free 24 hour cancellation
+                    {t("Free 24 hour cancellation")}
                   </h1>
                   <FontAwesomeIcon
                     className=""
@@ -653,7 +659,9 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
                   />
                 </div>
                 <div className="flex flex-row justify-between font-semibold text-sm mt-2">
-                  <h1 className="font-semibold text-sm">Split with friends</h1>
+                  <h1 className="font-semibold text-sm">
+                    {t("Split with friends")}
+                  </h1>
                   <FontAwesomeIcon
                     style={{ color: "#45DB5D" }}
                     icon={faCheck}
@@ -662,11 +670,7 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
                 <hr style={{ color: "#E0E4EA" }} className="mt-4 w-full" />
               </div>
               <div className="flex flex-col mb-4 mt-2">
-                <h1 className="font-normal text-sm">
-                  By checking this box you give us the consent to use the
-                  personal data you provided to us to make the booking possible.
-                  We will not use it in any other way than this.
-                </h1>
+                <h1 className="font-normal text-sm">{t("GDPR")}</h1>
                 <div className="flex mt-4">
                   <input
                     id="default-checkbox"
@@ -679,7 +683,7 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
                     htmlFor="default-checkbox"
                     className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                   >
-                    I consent to data privacy
+                    {t("Consent")}
                   </label>
                 </div>
               </div>
@@ -703,14 +707,14 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
         <Box sx={style}>
           <StyledContactForm>
             <form onSubmit={sendEmail}>
-              <label>First Name</label>
+              <label>{t("First Name")}</label>
               <input
                 onChange={handleChange}
                 type="text"
                 name="first_name"
                 value={toSend.first_name}
               />
-              <label>Last Name</label>
+              <label>{t("Last Name")}</label>
               <input
                 type="text"
                 onChange={handleChange}
