@@ -42,7 +42,9 @@ const Navigation = () => {
         </Link>
         <div className="flex flex-row">
           <Link to="/GY/test/contact">
-            <h3 className="text-md hover:cursor-pointer mt-4">Contact us</h3>
+            <h3 className="text-sm hover:cursor-pointer mt-4">
+              {t("Contact Us")}
+            </h3>
           </Link>
           <img
             onClick={handleOpen}

@@ -73,8 +73,14 @@
   "Consent": "Sunt de acord",
   "First Name": "Nume",
   "Last Name": "Prenume",
+  "Name": "Nume",
   "Your booking is now confirmed!": "Rezervarea ta este confirmata!",
   "If you don't see the confirmation email in your inbox, please check your Spam folder.": "Daca nu vezi mailul de confirmare, te rog sa verifici folderul Spam din mail!",
   "For a new booking click here!": "Pentru o rezervare noua, apasa aici!",
-  "Book now": "Rezerva acum"
+  "Book now": "Rezerva acum",
+  "Contact Us": "Contacteaza-ne",
+  "with a": "cu pachetul",
+  "package": "",
+  "Message": "Mesaj",
+  "Send": "Trimite"
 }

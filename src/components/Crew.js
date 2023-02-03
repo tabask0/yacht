@@ -78,8 +78,8 @@ const Crew = ({ week, values, nextStep, prevStep, handleFormData }) => {
           <p className="mr-2 ml-2 font-bold flex flex-row">
             {formatDate(values.week.start + " " + values.week.end)}
           </p>
-          with a <p className="font-bold mr-2 ml-2">{values.category}</p>{" "}
-          <p>package</p>
+          {t("with a")} <p className="font-bold mr-2 ml-2">{values.category}</p>{" "}
+          <p>{t("package")}</p>
         </div>{" "}
       </div>
       {selectedBoat === false && (

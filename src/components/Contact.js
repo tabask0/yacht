@@ -1,9 +1,32 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import logo from "../assets/logo.png";
+import ro from "../assets/romania.png";
+import us from "../assets/us.png";
 
 const Contact = () => {
+  const { t, i18n } = useTranslation();
+
+  const [language, setLanguage] = useState(localStorage.getItem("language"));
+  const [open, setOpen] = React.useState(false);
+
+  useEffect(() => {
+    localStorage.setItem("language", language);
+  }, [language]);
+
+  const handleOpen = () => {
+    setOpen(!open);
+  };
+
+  const changeLanguageHandler = (lang) => {
+    i18n.changeLanguage(lang);
+    setLanguage(lang);
+    console.log(i18n);
+  };
+
   const form = useRef();
   const refreshPage = () => {
     window.location.reload();
@@ -35,22 +58,59 @@ const Contact = () => {
       <div className="w-full h-18 justify-between shadow-lg">
         <div className="flex flex-row justify-between p-6 mr-auto">
           <Link to="/GY/test">
-            <h1 className="text-md">GLOBAL YACHTING</h1>
+            <h1 className="text-md">
+              <img width={180} height={180} src={logo} alt="logo" />
+            </h1>
           </Link>
-          <Link to="/GY/test/contact">
-            <h3 className="text-md hover:cursor-pointer">Contact us</h3>
-          </Link>
+          <div className="flex flex-row">
+            <Link to="/GY/test/contact">
+              <h3
+                onClick={() => refreshPage()}
+                className="text-sm hover:cursor-pointer mt-4"
+              >
+                {t("Contact Us")}
+              </h3>
+            </Link>
+            <img
+              onClick={handleOpen}
+              className="w-8 h-8 ml-4 mt-2 hover:cursor-pointer"
+              src={language === "ro" ? ro : us}
+              alt="language-flag"
+            />
+            {open ? (
+              <div className="w-32 h-16 absolute flex flex-row justify-center md:justify-start shadow-lg rounded-lg sm:flex-wrap mt-16 p-2 bg-alb">
+                <img
+                  onClick={() => {
+                    handleOpen();
+                    changeLanguageHandler("ro");
+                  }}
+                  className="w-8 h-8 ml-4 mt-2 hover:cursor-pointer"
+                  src={ro}
+                  alt="language-flag"
+                />
+                <img
+                  onClick={() => {
+                    handleOpen();
+                    changeLanguageHandler("en");
+                  }}
+                  className="w-8 h-8 ml-4 mt-2 hover:cursor-pointer"
+                  src={us}
+                  alt="language-flag"
+                />
+              </div>
+            ) : null}
+          </div>
         </div>
       </div>
       <StyledContactForm>
         <form ref={form} onSubmit={sendEmail}>
-          <label>Name</label>
+          <label>{t("Name")}</label>
           <input type="text" name="user_name" />
           <label>Email</label>
           <input type="email" name="user_email" />
-          <label>Message</label>
+          <label>{t("Message")}</label>
           <textarea name="message" />
-          <input type="submit" value="Send" />
+          <input type="submit" value={t("Send")} />
         </form>
       </StyledContactForm>
     </div>
