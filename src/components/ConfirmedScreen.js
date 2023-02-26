@@ -90,7 +90,7 @@ const ConfirmedScreen = ({ values, prevStep, nextStep, handleFormData }) => {
     e.preventDefault();
 
     emailjs
-      .send("service_vz1mhb8", "template_8aom1se", toSend, "YuDSusaOKA9KG3ye3")
+      .send("service_oghluig", "template_4zbg76g", toSend, "vOpYBDMmRdISGSdA7")
       .then(
         (result) => {
           console.log(result);

@@ -22,10 +22,6 @@ const Navigation = () => {
     setOpen(!open);
   };
 
-  const refreshPage = () => {
-    window.location.reload();
-  };
-
   const changeLanguageHandler = (lang) => {
     i18n.changeLanguage(lang);
     setLanguage(lang);
@@ -35,13 +31,13 @@ const Navigation = () => {
   return (
     <div className="w-full h-18 justify-between shadow-lg">
       <div className="flex flex-row justify-between p-6 mr-auto">
-        <Link to="/GY/test">
-          <h1 onClick={refreshPage} className="text-md">
+        <Link to="/GY/booking" reloadDocument>
+          <h1 className="text-md">
             <img width={180} height={180} src={logo} alt="logo" />
           </h1>
         </Link>
         <div className="flex flex-row">
-          <Link to="/GY/test/contact">
+          <Link to="/GY/booking/contact">
             <h3 className="text-sm hover:cursor-pointer mt-4">
               {t("Contact Us")}
             </h3>
